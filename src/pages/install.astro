@@ -1,0 +1,273 @@
+---
+import Base from '../layouts/Base.astro';
+import Code from '../components/Code.astro';
+
+const repo = 'https://github.com/axufuris/VoraMediaServer';
+
+const tags = [
+  ['latest', 'The newest stable release. Recommended.'],
+  ['1.4, 1.4.2', 'Pin a specific release or minor line.'],
+  ['qa', 'Pre-release builds from the main branch. Expect breakage.'],
+];
+
+const env = [
+  ['ConnectionStrings__DefaultConnection', 'Npgsql connection string. Use the Postgres container name as the host when both sit on one Docker network.'],
+  ['Jwt__SecretKey', 'Long random string signing account and profile tokens. Generate once and keep it stable — rotating it signs everyone out.'],
+  ['PUID / PGID', 'User and group the container runs as. Data and transcode mounts are chowned to match on startup, so no host-side chown is needed. Defaults are 99 / 100.'],
+  ['StoragePaths__*', 'Where artwork, the EPG cache, DVR recordings, user images, plugins, and subtitles live inside the container. Keep them under one mounted volume.'],
+  ['ASPNETCORE_HTTP_PORTS', 'Listening port inside the container. 8080 unless you have a reason.'],
+];
+---
+
+<Base
+  title="Install Vora — Docker, docker compose, and Unraid"
+  description="Install the Vora media server with Docker or docker compose. PostgreSQL with pgvector, one container, optional NVIDIA GPU transcoding, and an Unraid walkthrough."
+>
+  <section class="section section--tight">
+    <div class="shell">
+      <span class="eyebrow">Install</span>
+      <h1 style="font-size: clamp(2rem, 5vw, 3.2rem);">Up and running in five minutes</h1>
+      <p class="lede">
+        Vora is one image bundling the API and the web client. It needs PostgreSQL with the
+        <code>vector</code> extension, a volume for its data, and your media mounted read-only. Schema
+        migrations apply themselves on startup.
+      </p>
+
+      <div class="btn-row">
+        <a class="btn btn--primary" href={`${repo}/pkgs/container/vora-media-server`} rel="noopener">Docker image on GHCR</a>
+        <a class="btn btn--ghost" href={repo} rel="noopener">Full README</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow">Quick start</span>
+        <h2>docker compose</h2>
+        <p class="lede">
+          The fastest path. Save this as <code>docker-compose.yml</code>, change the two passwords and the
+          JWT secret, adjust the media paths, then run <code>docker compose up -d</code>.
+        </p>
+      </div>
+
+      <Code label="docker-compose.yml">{`services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: vora-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: vora
+      POSTGRES_USER: vora
+      POSTGRES_PASSWORD: change-me-to-a-strong-password
+    volumes:
+      - /srv/vora/postgres-data:/var/lib/postgresql/data
+
+  vora:
+    image: ghcr.io/axufuris/vora-media-server:latest
+    container_name: vora
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    environment:
+      PUID: 99
+      PGID: 100
+      ASPNETCORE_HTTP_PORTS: 8080
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=vora;Username=vora;Password=change-me-to-a-strong-password"
+      Jwt__SecretKey: "REPLACE_WITH_A_LONG_RANDOM_STRING"
+      StoragePaths__CustomArtwork: /app/data/custom_artwork
+      StoragePaths__OriginalArtworkCache: /app/data/original_artwork_cache
+      StoragePaths__EpgCache: /app/data/iptv/epg_cache
+      StoragePaths__IptvDvr: /app/data/iptv/dvr
+      StoragePaths__UserImages: /app/data/users
+      StoragePaths__Plugins: /app/data/plugins
+      StoragePaths__Subtitles: /app/data/subtitles
+    volumes:
+      - /srv/vora/data:/app/data
+      - /srv/vora/transcode:/transcode
+      - /mnt/media/movies:/media/movies:ro
+      - /mnt/media/shows:/media/shows:ro
+      - /mnt/media/music:/media/music:ro`}</Code>
+
+      <div class="steps" style="margin-top: 3rem;">
+        <div class="step">
+          <div>
+            <h3>Generate a JWT secret</h3>
+            <p>Any long random string works. Keep it somewhere safe — changing it later invalidates every session.</p>
+            <Code label="shell">{`openssl rand -base64 64`}</Code>
+          </div>
+        </div>
+
+        <div class="step">
+          <div>
+            <h3>Bring the stack up</h3>
+            <p>Vora waits for Postgres, applies its migrations, and starts serving.</p>
+            <Code label="shell">{`docker compose up -d
+docker compose logs -f vora`}</Code>
+          </div>
+        </div>
+
+        <div class="step">
+          <div>
+            <h3>Create the first profile</h3>
+            <p>
+              Open <code>http://your-host:8080</code>. The first profile you create through the setup flow
+              becomes the server admin. Add your libraries from the admin area and let the first scan run.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow">Image tags</span>
+        <h2>Which tag to pull</h2>
+        <p class="lede">
+          Images are published to GitHub Container Registry for <code>linux/amd64</code>.
+        </p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Tag</th><th>What it is</th></tr></thead>
+          <tbody>
+            {tags.map(([tag, note]) => (
+              <tr>
+                <td><code>{tag}</code></td>
+                <td>{note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow">Configuration</span>
+        <h2>The environment variables that matter</h2>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Variable</th><th>Purpose</th></tr></thead>
+          <tbody>
+            {env.map(([name, purpose]) => (
+              <tr>
+                <td><code>{name}</code></td>
+                <td>{purpose}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="split" style="margin-top: 3rem;">
+        <div>
+          <h3>Seed plugin API keys from compose</h3>
+          <p class="lede">
+            Plugin settings can be supplied as environment variables. They are written only when the
+            database row is still empty, so anything you later change in the admin UI wins.
+          </p>
+          <p class="muted">
+            The pattern is <code>Vora__PluginSettings__&lt;pluginId&gt;__&lt;settingKey&gt;</code>. Unknown
+            plugins and unknown keys are skipped with a warning, and values are redacted from the logs.
+          </p>
+        </div>
+
+        <Code label="environment">{`Vora__PluginSettings__tmdb_metadata__api_key: "YOUR_TMDB_KEY"
+Vora__PluginSettings__tvdb_metadata__api_key: "YOUR_TVDB_KEY"
+Vora__PluginSettings__fanart_artwork__api_key: "YOUR_FANART_KEY"
+Vora__PluginSettings__lastfm_listening__api_key: "YOUR_LASTFM_KEY"
+Vora__PluginSettings__opensubtitles_search__api_key: "YOUR_OPENSUBS_KEY"
+Vora__PluginSettings__openai_recommendations__is_enabled: "true"`}</Code>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="split">
+        <div>
+          <span class="eyebrow">Optional</span>
+          <h2>NVIDIA GPU transcoding</h2>
+          <p class="lede">
+            Install the NVIDIA Container Toolkit on the host and reserve a GPU. The image already carries
+            the driver capabilities it needs, so CUDA decode, NVENC encode, and HDR-to-SDR tone mapping
+            work without further configuration.
+          </p>
+          <p class="muted">
+            Do not narrow <code>NVIDIA_DRIVER_CAPABILITIES</code> — dropping <code>libcuda.so.1</code> is the
+            usual cause of a transcode failing to start.
+          </p>
+        </div>
+
+        <Code label="docker-compose.yml (vora service)">{`    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu, video]`}</Code>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="shell">
+      <div class="split split--reverse">
+        <div>
+          <span class="eyebrow">Unraid</span>
+          <h2>Community Applications</h2>
+          <p class="lede">
+            Add both containers from a manual template with the Network Type set to the same custom
+            bridge, so Vora can resolve Postgres by container name.
+          </p>
+          <ul class="checklist" style="margin-top: 1.5rem;">
+            <li><strong>Leave Postgres unmapped</strong> — keeping the database off the LAN is safer, and Vora reaches it over the internal network.</li>
+            <li><strong>PUID 99 / PGID 100</strong> — Unraid's <code>nobody:users</code>, which already own everything under <code>/mnt/user</code>.</li>
+            <li><strong>Media read-only</strong> — set each library path to Access Mode <em>Read Only</em>.</li>
+            <li><strong>For GPU transcoding</strong> — install the Nvidia-Driver plugin and set Extra Parameters to <code>--runtime=nvidia</code>. Nothing else is required.</li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn--ghost" href={`${repo}#unraid`} rel="noopener">Unraid template values</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Upgrading</h3>
+          <p style="margin-bottom: 1rem;">
+            Pull the new image and restart. Vora detects pending migrations and applies them before it
+            serves traffic; your data volume and the Postgres directory persist. If a migration fails the
+            container exits rather than serving a half-migrated schema.
+          </p>
+          <Code label="shell">{`docker compose pull vora
+docker compose up -d vora`}</Code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="cta-band">
+        <h2>Something not working?</h2>
+        <p class="lede center" style="margin-bottom: 0;">
+          The README covers every storage path, plugin setting, and deployment quirk in detail. Bugs and
+          questions are welcome on the issue tracker.
+        </p>
+        <div class="btn-row" style="justify-content: center;">
+          <a class="btn btn--primary" href={`${repo}#readme`} rel="noopener">Read the README</a>
+          <a class="btn btn--ghost" href={`${repo}/issues`} rel="noopener">Open an issue</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

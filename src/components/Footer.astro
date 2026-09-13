@@ -1,0 +1,51 @@
+---
+const repo = 'https://github.com/axufuris/VoraMediaServer';
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__grid">
+      <div>
+        <a class="nav__brand" href="/" style="margin-bottom: 0.9rem;">
+          <img src="/vora-mark.svg" alt="" width="24" height="24" />
+          <span>Vora</span>
+        </a>
+        <p style="max-width: 30ch;">A self-hosted media server with a cinematic client on every screen you own.</p>
+      </div>
+
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="/features">Features</a></li>
+          <li><a href="/clients">Clients</a></li>
+          <li><a href="/install">Install</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Source</h4>
+        <ul>
+          <li><a href={repo} rel="noopener">Server &amp; web client</a></li>
+          <li><a href="https://github.com/axufuris/Vora.Android" rel="noopener">Android client</a></li>
+          <li><a href={`${repo}/pkgs/container/vora-media-server`} rel="noopener">Docker image</a></li>
+          <li><a href={`${repo}/tree/main/docs`} rel="noopener">Documentation</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Project</h4>
+        <ul>
+          <li><a href={`${repo}/issues`} rel="noopener">Issues</a></li>
+          <li><a href={`${repo}/blob/main/LICENSE`} rel="noopener">AGPL-3.0 license</a></li>
+          <li><a href={`${repo}/blob/main/TRADEMARK.md`} rel="noopener">Trademark policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__legal">
+      <span>&copy; {year} Andreas Xufuris. Vora is released under the AGPL-3.0.</span>
+      <span>&ldquo;Vora&rdquo; and the Vora logo are trademarks of Andreas Xufuris.</span>
+    </div>
+  </div>
+</footer>

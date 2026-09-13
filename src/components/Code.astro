@@ -1,0 +1,14 @@
+---
+interface Props {
+  label: string;
+}
+const { label } = Astro.props;
+---
+
+<div class="code">
+  <div class="code__bar">
+    <span>{label}</span>
+    <button class="copy-btn" type="button">Copy</button>
+  </div>
+  <pre><slot /></pre>
+</div>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 840" width="1400" height="840" role="img" aria-label="Android Auto — Now playing placeholder">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fdba74" stop-opacity="0.18" />
+      <stop offset="0.55" stop-color="#fb923c" stop-opacity="0.10" />
+      <stop offset="1" stop-color="#ea580c" stop-opacity="0.04" />
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="840" fill="#100e0d" />
+  <rect width="1400" height="840" fill="url(#g)" />
+  <g fill="none" stroke="#2a2522" stroke-width="2">
+    <rect x="1" y="1" width="1398" height="838" rx="6" />
+  </g>
+  <text x="50%" y="48%" text-anchor="middle" font-family="Inter, Segoe UI, system-ui, sans-serif" font-size="46" font-weight="700" fill="#8f8883">Android Auto — Now playing</text>
+  <text x="50%" y="56%" text-anchor="middle" font-family="Inter, Segoe UI, system-ui, sans-serif" font-size="27" fill="#5c5551">1400 &#215; 840 &#183; replace with a real capture</text>
+</svg>

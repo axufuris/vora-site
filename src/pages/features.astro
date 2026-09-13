@@ -1,0 +1,269 @@
+---
+import Base from '../layouts/Base.astro';
+import Feature from '../components/Feature.astro';
+import Screenshot from '../components/Screenshot.astro';
+
+const repo = 'https://github.com/axufuris/VoraMediaServer';
+
+const providers = [
+  ['Metadata', 'TMDB, TVDB, OMDb / IMDb ratings, local NFO and image assets'],
+  ['Artwork', 'TMDB, TVDB, Fanart.tv, MediUX, TheAudioDB, MusicBrainz, MyAnimeList, local assets'],
+  ['Discovery', 'TMDB Discovery, MyAnimeList Discovery, iTunes podcasts'],
+  ['Lists &amp; chronology', 'Trakt.tv, MDbList, IMDb public lists, AI franchise ordering'],
+  ['Music', 'Last.fm scrobbling, Genius and LRClib lyrics'],
+  ['Requests', 'Radarr and Sonarr requesters plus release calendars'],
+  ['Subtitles', 'OpenSubtitles search with API-key or account authentication'],
+  ['Extras', 'SerpApi Google showtimes, OpenAI smart recommendations, native poster overlays'],
+];
+---
+
+<Base
+  title="Features — Vora media server"
+  description="Library scanning, hardware transcoding, subtitles, intro and credits markers, IPTV with DVR, a full music and podcast hub, discovery, smart playlists, themes, and a plugin system."
+>
+  <section class="section section--tight">
+    <div class="shell">
+      <span class="eyebrow">Features</span>
+      <h1 style="font-size: clamp(2rem, 5vw, 3.2rem);">What Vora actually does</h1>
+      <p class="lede">
+        Vora is not a thin index over a folder of files. It scans, enriches, analyzes, transcodes,
+        records, recommends, and themes — and exposes all of it through one API that every client shares.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow">Library</span>
+        <h2>Scanning and metadata</h2>
+      </div>
+
+      <div class="grid">
+        <Feature title="Parallel scan and enrich" icon="bolt">
+          Libraries are split into scan units that scan and enrich inside one shared scope, in parallel,
+          with per-item progress streamed live to the admin UI.
+        </Feature>
+        <Feature title="Folder watching" icon="search">
+          A native OS watcher or a polling watcher ingests new files one at a time, with configurable
+          exclude filters so sample and extras folders stay out.
+        </Feature>
+        <Feature title="Editions and versions" icon="film">
+          Multiple files for the same title become per-part editions with a version picker in the player,
+          not duplicate entries in the grid.
+        </Feature>
+        <Feature title="Media Trash" icon="shield">
+          A missing video is soft-deleted and hidden rather than dropped, with per-profile ratings and
+          watch state preserved across a re-add.
+        </Feature>
+        <Feature title="Field locks" icon="grid">
+          Anything you edit by hand can be locked so the next metadata refresh leaves it alone —
+          including manually authored chapter markers.
+        </Feature>
+        <Feature title="Poster overlays" icon="sliders">
+          Native overlay badges render resolution, video range, and audio format onto posters on a
+          schedule, resolved from the best part across versions.
+        </Feature>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="split">
+        <div>
+          <span class="eyebrow">Playback</span>
+          <h2>Streaming that adapts</h2>
+          <p class="lede">
+            Vora decides per session whether to direct play, remux, or transcode, then serves HLS from a
+            signed, prefix-namespaced session directory.
+          </p>
+          <ul class="checklist" style="margin-top: 1.5rem;">
+            <li><strong>Hardware acceleration</strong> — NVENC and NVDEC encode and decode plus CUDA HDR-to-SDR tone mapping, with the driver capabilities baked into the image.</li>
+            <li><strong>Subtitles done properly</strong> — image subtitles burn in, text subtitles extract to a content-keyed sidecar cache warmed after a scan, never on the play path.</li>
+            <li><strong>External subtitles</strong> — sidecar files beside the video are reconciled by path, separately from embedded tracks.</li>
+            <li><strong>Scrub previews</strong> — FFmpeg sprite sheets and WebVTT give the scrub bar real thumbnails.</li>
+            <li><strong>Skip intro and credits</strong> — silence and black-frame analysis clustered across a season, with per-profile auto-skip.</li>
+            <li><strong>Resume that resets</strong> — watched state is derived from the playback ping, so a re-watch clears it instead of sticking.</li>
+          </ul>
+        </div>
+
+        <Screenshot
+          kind="browser"
+          src="/screenshots/web-detail.svg"
+          alt="Vora media detail and player"
+          url="vora.home.lan/media"
+          width={1600}
+          height={1000}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="shell">
+      <div class="split split--reverse">
+        <div>
+          <span class="eyebrow">Live TV</span>
+          <h2>IPTV, EPG, and DVR</h2>
+          <p class="lede">
+            Playlists and EPG sources are independent, so one guide can cover several providers and one
+            provider can feed several playlists.
+          </p>
+          <ul class="checklist" style="margin-top: 1.5rem;">
+            <li><strong>Real guide grid</strong> — channel and programme data cached and matched, rendered as a grid on the web and on television.</li>
+            <li><strong>Timeshift</strong> — pause and rewind live television.</li>
+            <li><strong>Scheduled recording</strong> — record an episode or a whole series from the in-player guide.</li>
+            <li><strong>Commercial detection</strong> — Comskip ships in the container for DVR recordings.</li>
+            <li><strong>One tuner budget</strong> — live, timeshift, and DVR all draw from the same concurrent-stream limit, so nothing silently steals a tuner.</li>
+          </ul>
+        </div>
+
+        <Screenshot
+          kind="browser"
+          src="/screenshots/web-livetv.svg"
+          alt="Vora live TV guide"
+          url="vora.home.lan/live"
+          width={1600}
+          height={1000}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow">Audio</span>
+        <h2>A music service, not an afterthought</h2>
+      </div>
+
+      <div class="grid">
+        <Feature title="Artists, albums, tracks" icon="music">
+          A proper music domain with genres, top tracks, liked songs, and a year recap.
+        </Feature>
+        <Feature title="Daily mixes and stations" icon="grid">
+          A recommendation engine builds mixes and radio stations from what you actually listen to.
+        </Feature>
+        <Feature title="Lyrics and scrobbling" icon="search">
+          Genius and LRClib lyrics, plus Last.fm scrobbling when you want your history off-server too.
+        </Feature>
+        <Feature title="Podcasts" icon="cast">
+          iTunes-backed discovery, subscriptions, new-episode feeds, and per-episode resume.
+        </Feature>
+        <Feature title="Live radio" icon="tv">
+          Audio-only IPTV streams played as a queue, with favorites that sync between the phone and the car.
+        </Feature>
+        <Feature title="Quality controls" icon="sliders">
+          Crossfade, an equalizer with five presets, a sleep timer, and configurable audio quality.
+        </Feature>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow">Personalization</span>
+        <h2>Discovery, collections, and themes</h2>
+      </div>
+
+      <div class="grid">
+        <Feature title="Discovery and For You" icon="search">
+          Multi-provider discovery feeds, actor pages, a watchlist, and a release calendar in month,
+          week, or day view.
+        </Feature>
+        <Feature title="Smart collections" icon="grid">
+          Collections sync their contents from Trakt, MDbList, or IMDb lists — or are assembled by an AI
+          provider that understands a franchise and orders it chronologically.
+        </Feature>
+        <Feature title="Smart playlists" icon="sliders">
+          A rule-tree evaluator with a fields-per-type matrix, alongside ordinary manual playlists.
+        </Feature>
+        <Feature title="Scheduled templates" icon="clock">
+          Seven bundled visual templates, selectable per profile and schedulable by date range — a
+          Thanksgiving look that arrives and leaves on its own.
+        </Feature>
+        <Feature title="Profiles and permissions" icon="users">
+          Per-profile library access, watch state, and navigation order, with permissions refreshed live
+          rather than read from a stale token.
+        </Feature>
+        <Feature title="Requests" icon="plug">
+          Radarr and Sonarr request servers, so a household can ask for something and have it appear.
+        </Feature>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow">Plugins</span>
+        <h2>Bring your own providers</h2>
+        <p class="lede">
+          Every external integration is a plugin with its own settings, and API keys can be seeded from
+          environment variables so a fresh deployment comes up already configured.
+        </p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Category</th><th>Bundled providers</th></tr>
+          </thead>
+          <tbody>
+            {providers.map(([category, list]) => (
+              <tr>
+                <td style="color: var(--text-primary); font-weight: 600;">{category}</td>
+                <td set:html={list} />
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="btn-row">
+        <a class="btn btn--ghost" href={`${repo}#plugins-and-their-settings`} rel="noopener">Full plugin settings reference</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow">Operations</span>
+        <h2>Run it like a grown-up service</h2>
+      </div>
+
+      <div class="grid">
+        <Feature title="Backups and restore" icon="shield">
+          Scheduled zip backups with retention, restored atomically through a transaction factory so a
+          failed restore leaves nothing half-applied.
+        </Feature>
+        <Feature title="Live logs" icon="search">
+          An in-memory ring buffer plus a file sink, runtime log-level overrides, and a live tail in the
+          admin UI over SignalR.
+        </Feature>
+        <Feature title="Task queue" icon="clock">
+          Background work runs through a queue with per-task cancellation and progress, not fire-and-forget
+          threads.
+        </Feature>
+        <Feature title="Email" icon="plug">
+          SMTP with admin-overridable templates, a dispatch worker, a delivery log, and the password
+          encrypted through data protection.
+        </Feature>
+        <Feature title="Device management" icon="users">
+          Every client identifies itself, and authorized devices can be reviewed and revoked.
+        </Feature>
+        <Feature title="Auto-migrating upgrades" icon="bolt">
+          A new image applies pending schema migrations on startup and refuses to serve traffic if one
+          fails.
+        </Feature>
+      </div>
+
+      <div class="btn-row">
+        <a class="btn btn--primary" href="/install">Install Vora</a>
+      </div>
+    </div>
+  </section>
+</Base>

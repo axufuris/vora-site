@@ -1,0 +1,4 @@
+/* Vora project site */
+User-agent: *
+Allow: /
+Sitemap: https://getvora.net/sitemap-index.xml

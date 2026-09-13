@@ -1,0 +1,216 @@
+---
+import Base from '../layouts/Base.astro';
+import Screenshot from '../components/Screenshot.astro';
+
+const androidRepo = 'https://github.com/axufuris/Vora.Android';
+const repo = 'https://github.com/axufuris/VoraMediaServer';
+---
+
+<Base
+  title="Clients — Vora on web, Android phone, Android TV, and Android Auto"
+  description="One Vora server, five surfaces: the .NET server, the React web client, and a single Kotlin and Compose Android app that adapts to phones, Android TV, and Android Auto."
+>
+  <section class="section section--tight">
+    <div class="shell">
+      <span class="eyebrow">Clients</span>
+      <h1 style="font-size: clamp(2rem, 5vw, 3.2rem);">One library, five surfaces</h1>
+      <p class="lede">
+        The Android client is a single Kotlin and Jetpack Compose codebase that changes shape based on
+        the device it launches on. It mirrors the web client screen for screen on every non-admin path —
+        server configuration deliberately stays on the web.
+      </p>
+
+      <nav class="surface-nav" style="margin-top: 2.5rem;" aria-label="Surfaces">
+        <a href="#server">Server</a>
+        <a href="#web">Web client</a>
+        <a href="#phone">Android phone</a>
+        <a href="#tv">Android TV</a>
+        <a href="#auto">Android Auto</a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="surface" id="server">
+    <div class="shell">
+      <div class="split">
+        <div>
+          <span class="pill">Server</span>
+          <h2 style="margin-top: 1rem;">The engine</h2>
+          <p class="lede">
+            A .NET 10 minimal-API service backed by PostgreSQL with <code>pgvector</code>, shipped as one
+            Docker image that also serves the built React client on port 8080.
+          </p>
+          <ul class="checklist" style="margin-top: 1.5rem;">
+            <li><strong>Parallel scanning</strong> — libraries scan and enrich per unit with live per-item progress over SignalR.</li>
+            <li><strong>Transcoding</strong> — FFmpeg in the container, HLS sessions, NVENC/NVDEC and CUDA tone mapping when a GPU is passed through.</li>
+            <li><strong>Recording</strong> — IPTV tuners, timeshift, scheduled DVR, and Comskip commercial detection.</li>
+            <li><strong>Analysis</strong> — silence and black-frame detection producing season-clustered intro, recap, preview, and credits markers.</li>
+            <li><strong>Operations</strong> — scheduled backups with atomic restore, a live log tail, an email dispatch worker, and a background task queue with per-task cancellation.</li>
+            <li><strong>Extensibility</strong> — metadata, artwork, lyrics, discovery, list-sync, and request providers all load as plugins.</li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn--ghost" href={`${repo}/tree/main/docs`} rel="noopener">Architecture docs</a>
+          </div>
+        </div>
+
+        <Screenshot
+          kind="browser"
+          src="/screenshots/web-admin.svg"
+          alt="The Vora admin dashboard"
+          url="https://vora.home.lan/admin"
+          caption="Admin dashboard — tasks, libraries, plugins, and server health"
+          width={1600}
+          height={1000}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="surface" id="web">
+    <div class="shell">
+      <div class="split split--reverse">
+        <div>
+          <span class="pill">Web client</span>
+          <h2 style="margin-top: 1rem;">The complete Vora</h2>
+          <p class="lede">
+            React, TypeScript, and Vite, themed entirely through CSS custom properties so a template
+            swap recolors the whole client — brand mark included.
+          </p>
+          <ul class="checklist" style="margin-top: 1.5rem;">
+            <li><strong>Browse</strong> — Home spotlight and smart lists, library browse with filter and sort, cinematic detail pages.</li>
+            <li><strong>Discover</strong> — Discovery feeds, For You, Watchlist, and a month/week/day release calendar.</li>
+            <li><strong>Organize</strong> — collections with content sync and chronological ordering, manual playlists, and rule-tree smart playlists.</li>
+            <li><strong>Listen</strong> — a full audio hub for music, podcasts, and live radio with an overlay player.</li>
+            <li><strong>Watch live</strong> — a real EPG grid, an in-player guide, and DVR session management.</li>
+            <li><strong>Administer</strong> — libraries, users, invitations, plugins, IPTV, requests, overlays, backups, logs, and templates.</li>
+          </ul>
+        </div>
+
+        <Screenshot
+          kind="browser"
+          src="/screenshots/web-library.svg"
+          alt="The Vora web library browse page"
+          url="https://vora.home.lan/library"
+          caption="Library browse with filter, sort, and collections"
+          width={1600}
+          height={1000}
+        />
+      </div>
+
+      <div class="grid" style="margin-top: 3rem;">
+        <Screenshot kind="browser" src="/screenshots/web-detail.svg" alt="Media detail page" url="vora.home.lan/media" caption="Media detail" width={1600} height={1000} />
+        <Screenshot kind="browser" src="/screenshots/web-livetv.svg" alt="Live TV guide" url="vora.home.lan/live" caption="Live TV guide" width={1600} height={1000} />
+        <Screenshot kind="browser" src="/screenshots/web-music.svg" alt="Music hub" url="vora.home.lan/audio" caption="Music hub" width={1600} height={1000} />
+      </div>
+    </div>
+  </section>
+
+  <section class="surface" id="phone">
+    <div class="shell">
+      <div class="split">
+        <div>
+          <span class="pill">Android phone</span>
+          <h2 style="margin-top: 1rem;">Native, not a wrapper</h2>
+          <p class="lede">
+            Kotlin and Jetpack Compose throughout, with the API client generated from the server's own
+            OpenAPI document and design tokens synced straight from the web theme.
+          </p>
+          <ul class="checklist" style="margin-top: 1.5rem;">
+            <li><strong>Media3 playback</strong> — ExoPlayer with fully Compose-owned player chrome, a quality and tracks panel, and marker skip overlays.</li>
+            <li><strong>Background audio</strong> — a media session that drives the lock screen, Quick Settings, and Wear OS, with a sleep timer, crossfade, and a five-preset equalizer.</li>
+            <li><strong>Cast and PiP</strong> — Google Cast switching mid-playback and picture-in-picture on user-leave.</li>
+            <li><strong>Multi-server</strong> — saved servers, profile picker, and skip-ahead sign-in.</li>
+            <li><strong>Live updates</strong> — SignalR keeps permissions and the active template in sync without a restart.</li>
+            <li><strong>Encrypted at rest</strong> — bearer tokens sealed with Google Tink, keyset wrapped by the Android Keystore.</li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn--ghost" href={androidRepo} rel="noopener">Android source</a>
+          </div>
+        </div>
+
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));">
+          <Screenshot kind="phone" src="/screenshots/phone-home.svg" alt="Vora on an Android phone, home screen" caption="Home" width={800} height={1700} />
+          <Screenshot kind="phone" src="/screenshots/phone-nowplaying.svg" alt="Vora on an Android phone, now playing" caption="Now playing" width={800} height={1700} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="surface" id="tv">
+    <div class="shell">
+      <div class="split split--reverse">
+        <div>
+          <span class="pill">Android TV</span>
+          <h2 style="margin-top: 1rem;">The same app, ten feet back</h2>
+          <p class="lede">
+            Vora detects the television form factor at runtime and rebuilds its shell around the D-pad —
+            no separate build, no separate codebase.
+          </p>
+          <ul class="checklist" style="margin-top: 1.5rem;">
+            <li><strong>Focus first</strong> — every control carries a Vora focus ring, and initial focus is claimed on entry so the remote always has somewhere to go.</li>
+            <li><strong>Plex-style drawer</strong> — pressing LEFT at the edge of a row opens navigation, with focus gating so the remote never gets lost behind it.</li>
+            <li><strong>Guide grid</strong> — the Live TV channel grid and in-player guide are built for a remote, not adapted from touch.</li>
+            <li><strong>Chrome that gets out of the way</strong> — the top bar hides, the hero shrinks, and the player controls are pure Compose.</li>
+          </ul>
+        </div>
+
+        <Screenshot
+          kind="tv"
+          src="/screenshots/tv-home.svg"
+          alt="Vora running on Android TV"
+          caption="Android TV home — D-pad focus and a shrunken hero"
+          width={1920}
+          height={1080}
+        />
+      </div>
+
+      <div class="grid" style="margin-top: 3rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));">
+        <Screenshot kind="tv" src="/screenshots/tv-guide.svg" alt="Android TV live guide" caption="Live guide grid" width={1920} height={1080} />
+        <Screenshot kind="tv" src="/screenshots/tv-player.svg" alt="Android TV player" caption="Player with marker skip" width={1920} height={1080} />
+      </div>
+    </div>
+  </section>
+
+  <section class="surface" id="auto">
+    <div class="shell">
+      <div class="split">
+        <div>
+          <span class="pill">Android Auto</span>
+          <h2 style="margin-top: 1rem;">Your library on the dashboard</h2>
+          <p class="lede">
+            Vora's audio service is a Media3 <code>MediaLibraryService</code>, so the car gets a real browse
+            tree rather than a mirrored phone screen. Video is deliberately excluded.
+          </p>
+          <ul class="checklist" style="margin-top: 1.5rem;">
+            <li><strong>Music</strong> — Recently Played, Top Tracks, Liked Songs, Artists, and Albums.</li>
+            <li><strong>Podcasts</strong> — new episodes and your subscriptions.</li>
+            <li><strong>Radio</strong> — favorites and all stations, played as a real queue so previous and next skip between stations.</li>
+            <li><strong>Favorite from the wheel</strong> — a custom star command toggles the current station, in sync with the phone.</li>
+            <li><strong>Resume</strong> — playback resumption rebuilds the persisted queue for the car's resume tile.</li>
+            <li><strong>Scrobbling</strong> — plays recorded from the car feed Recently Played and Top Tracks like any other surface.</li>
+          </ul>
+          <p class="muted" style="margin-top: 1.5rem;">
+            Sideloaded builds need Android Auto's Developer settings → &ldquo;Unknown sources&rdquo; enabled
+            before Vora appears as a car media source. That is a device setting, not a limitation of the app.
+          </p>
+        </div>
+
+        <div class="stack">
+          <Screenshot kind="car" src="/screenshots/auto-browse.svg" alt="Vora browse tree in Android Auto" caption="Browse tree on the head unit" width={1400} height={840} />
+          <Screenshot kind="car" src="/screenshots/auto-nowplaying.svg" alt="Vora now playing in Android Auto" caption="Now playing with the favorite action" width={1400} height={840} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="shell center">
+      <h2>Ready to run it?</h2>
+      <p class="lede">One image, one database, your media mounted read-only.</p>
+      <div class="btn-row" style="justify-content: center;">
+        <a class="btn btn--primary" href="/install">Installation guide</a>
+        <a class="btn btn--ghost" href="/features">All features</a>
+      </div>
+    </div>
+  </section>
+</Base>
