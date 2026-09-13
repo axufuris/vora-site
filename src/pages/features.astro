@@ -9,7 +9,7 @@ const providers = [
   ['Metadata', 'TMDB, TVDB, OMDb / IMDb ratings, local NFO and image assets'],
   ['Artwork', 'TMDB, TVDB, Fanart.tv, MediUX, TheAudioDB, MusicBrainz, MyAnimeList, local assets'],
   ['Discovery', 'TMDB Discovery, MyAnimeList Discovery, iTunes podcasts'],
-  ['Lists &amp; chronology', 'Trakt.tv, MDbList, IMDb public lists, AI franchise ordering'],
+  ['Lists & chronology', 'Trakt.tv, MDbList, IMDb public lists, AI franchise ordering'],
   ['Music', 'Last.fm scrobbling, Genius and LRClib lyrics'],
   ['Requests', 'Radarr and Sonarr requesters plus release calendars'],
   ['Subtitles', 'OpenSubtitles search with API-key or account authentication'],
@@ -215,7 +215,7 @@ const providers = [
             {providers.map(([category, list]) => (
               <tr>
                 <td style="color: var(--text-primary); font-weight: 600;">{category}</td>
-                <td set:html={list} />
+                <td>{list}</td>
               </tr>
             ))}
           </tbody>
