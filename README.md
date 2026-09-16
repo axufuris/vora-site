@@ -19,25 +19,56 @@ npm run preview  # serve dist/ locally
 
 ```
 src/
-  layouts/Base.astro        head, fonts, nav + footer, copy-button script
+  layouts/Base.astro          head, fonts, nav + footer, copy-button script
   components/
-    Nav.astro               sticky header
-    Footer.astro            link columns + license/trademark line
-    Feature.astro           icon card used across the feature grids
-    Screenshot.astro        browser / phone / TV / car frames
-    Code.astro              code block with a copy button
+    Nav.astro                 sticky header
+    Footer.astro              link columns + license/trademark line
+    Feature.astro             icon card used across the feature grids
+    Shot.astro                screenshot in a browser / phone / TV frame
+    PlatformSwitch.astro      CSS-only Web/Phone/TV tabs for one screen
+    Code.astro                code block with a copy button
+  data/screenshots.json       generated — pixel dimensions for every shot
   pages/
-    index.astro             hero, feature grid, surfaces, compose teaser
-    features.astro          the deep feature tour
-    clients.astro           server, web, phone, TV, Auto
-    install.astro           docker compose, tags, env vars, GPU, Unraid
+    index.astro               the app: what it does, on what, with pictures
+    features.astro            the full app feature tour
+    apps.astro                web / Android phone / Android TV / Android Auto
+    server.astro              administration, plugins, ops, architecture
+    install.astro             docker compose, tags, env vars, GPU, Unraid
     404.astro
-  styles/global.css         all tokens and component styles
-public/
-  screenshots/              placeholders — see public/screenshots/README.md
-  CNAME                     getvora.net
-tools/make-placeholders.mjs regenerates the placeholder screenshots
+  styles/global.css           all tokens and component styles
+screenshots-src/              source PNGs, by platform folder (tracked)
+public/screenshots/           generated WebP, by platform (web/phone/tv/admin)
+tools/build-screenshots.mjs   PNG -> WebP + dimensions manifest
 ```
+
+The landing page is deliberately about the **app**. Server administration and
+deployment live behind their own links (`/server`, `/install`) so a first-time
+visitor sees what Vora looks like before they see what it takes to run.
+
+## Screenshots
+
+Drop new captures into `screenshots-src/<Platform>/<Some Name>.png` — the folder
+names are `Web`, `Android Phone`, `Android TV` and `Server Admin` — then:
+
+```bash
+npm run screenshots
+```
+
+That writes `public/screenshots/<web|phone|tv|admin>/<kebab-name>.webp` at
+quality 82 and regenerates `src/data/screenshots.json` with each image's real
+pixel dimensions, which `Shot.astro` uses for width/height so nothing shifts as
+the page loads. The last run took 35 MB of PNG down to 4.8 MB of WebP.
+
+Reference a shot by its key, without extension:
+
+```astro
+<Shot src="web/live-tv-guide" url="vora.local/live" alt="..." caption="..." />
+<Shot src="phone/home" frame="phone" alt="..." />
+<Shot src="tv/home" frame="tv" alt="..." />
+```
+
+A phone capture that is wider than it is tall automatically gets a landscape
+phone frame, so rotated screenshots do not need special handling.
 
 ## Deployment
 

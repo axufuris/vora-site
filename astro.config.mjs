@@ -5,4 +5,7 @@ export default defineConfig({
   site: 'https://getvora.net',
   integrations: [sitemap()],
   build: { format: 'directory' },
+  redirects: {
+    '/clients': '/apps',
+  },
 });

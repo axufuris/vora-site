@@ -1,0 +1,338 @@
+{
+  "admin/ai-usage": {
+    "w": 1769,
+    "h": 988
+  },
+  "admin/backups": {
+    "w": 1765,
+    "h": 985
+  },
+  "admin/client-theming": {
+    "w": 1768,
+    "h": 990
+  },
+  "admin/dashboard": {
+    "w": 1769,
+    "h": 992
+  },
+  "admin/duplicate-file-management": {
+    "w": 1772,
+    "h": 990
+  },
+  "admin/internet-radio-setup": {
+    "w": 1767,
+    "h": 992
+  },
+  "admin/iptv-setup": {
+    "w": 1770,
+    "h": 992
+  },
+  "admin/library-management": {
+    "w": 1769,
+    "h": 990
+  },
+  "admin/plex-import": {
+    "w": 1771,
+    "h": 989
+  },
+  "admin/plugin-system": {
+    "w": 1765,
+    "h": 983
+  },
+  "admin/poster-overlay-engine": {
+    "w": 1772,
+    "h": 992
+  },
+  "admin/smart-list-management": {
+    "w": 1771,
+    "h": 988
+  },
+  "phone/album": {
+    "w": 556,
+    "h": 1234
+  },
+  "phone/client-templates": {
+    "w": 551,
+    "h": 1229
+  },
+  "phone/customize-home-screen": {
+    "w": 554,
+    "h": 1229
+  },
+  "phone/discovery": {
+    "w": 555,
+    "h": 1230
+  },
+  "phone/global-collections": {
+    "w": 553,
+    "h": 1228
+  },
+  "phone/home": {
+    "w": 555,
+    "h": 1229
+  },
+  "phone/internet-radio": {
+    "w": 554,
+    "h": 1232
+  },
+  "phone/internet-radio-player": {
+    "w": 553,
+    "h": 1230
+  },
+  "phone/library": {
+    "w": 554,
+    "h": 1232
+  },
+  "phone/library-collections": {
+    "w": 551,
+    "h": 1232
+  },
+  "phone/library-for-you": {
+    "w": 555,
+    "h": 1236
+  },
+  "phone/live-radio-and-tv-provider-access": {
+    "w": 552,
+    "h": 1230
+  },
+  "phone/live-tv": {
+    "w": 555,
+    "h": 1236
+  },
+  "phone/live-tv-guide": {
+    "w": 1178,
+    "h": 528
+  },
+  "phone/music-home": {
+    "w": 549,
+    "h": 1225
+  },
+  "phone/music-player-plain": {
+    "w": 551,
+    "h": 1228
+  },
+  "phone/music-player-with-lyrics": {
+    "w": 556,
+    "h": 1226
+  },
+  "phone/podcast-player": {
+    "w": 547,
+    "h": 1230
+  },
+  "phone/podcasts": {
+    "w": 550,
+    "h": 1230
+  },
+  "phone/profile-parental-controls": {
+    "w": 553,
+    "h": 1229
+  },
+  "phone/profile-scheduled-access-times": {
+    "w": 557,
+    "h": 1230
+  },
+  "phone/release-calendar": {
+    "w": 552,
+    "h": 1235
+  },
+  "phone/show-season": {
+    "w": 556,
+    "h": 1235
+  },
+  "phone/watchlist": {
+    "w": 547,
+    "h": 1226
+  },
+  "tv/album": {
+    "w": 1160,
+    "h": 661
+  },
+  "tv/client-templates": {
+    "w": 1166,
+    "h": 671
+  },
+  "tv/customize-home-screen": {
+    "w": 1166,
+    "h": 668
+  },
+  "tv/discovery": {
+    "w": 1169,
+    "h": 667
+  },
+  "tv/global-collections": {
+    "w": 1167,
+    "h": 667
+  },
+  "tv/home": {
+    "w": 1159,
+    "h": 665
+  },
+  "tv/internet-radio": {
+    "w": 1156,
+    "h": 663
+  },
+  "tv/internet-radio-player": {
+    "w": 1163,
+    "h": 670
+  },
+  "tv/library": {
+    "w": 1158,
+    "h": 663
+  },
+  "tv/library-collections": {
+    "w": 1162,
+    "h": 663
+  },
+  "tv/library-for-you": {
+    "w": 1162,
+    "h": 669
+  },
+  "tv/live-radio-and-tv-provider-access": {
+    "w": 1158,
+    "h": 669
+  },
+  "tv/live-tv": {
+    "w": 1162,
+    "h": 666
+  },
+  "tv/live-tv-guide": {
+    "w": 1168,
+    "h": 672
+  },
+  "tv/music-home": {
+    "w": 1166,
+    "h": 666
+  },
+  "tv/music-player-plain": {
+    "w": 1165,
+    "h": 669
+  },
+  "tv/music-player-with-lyrics": {
+    "w": 1162,
+    "h": 665
+  },
+  "tv/podcast-player": {
+    "w": 1162,
+    "h": 669
+  },
+  "tv/podcasts": {
+    "w": 1161,
+    "h": 669
+  },
+  "tv/profile-parental-controls": {
+    "w": 1162,
+    "h": 666
+  },
+  "tv/profile-scheduled-access-times": {
+    "w": 1165,
+    "h": 672
+  },
+  "tv/release-calendar": {
+    "w": 1162,
+    "h": 665
+  },
+  "tv/show-season": {
+    "w": 1159,
+    "h": 665
+  },
+  "tv/watchlist": {
+    "w": 1158,
+    "h": 659
+  },
+  "web/album": {
+    "w": 1769,
+    "h": 981
+  },
+  "web/client-templates": {
+    "w": 1767,
+    "h": 991
+  },
+  "web/customize-home-screen": {
+    "w": 1765,
+    "h": 988
+  },
+  "web/discovery": {
+    "w": 1767,
+    "h": 990
+  },
+  "web/global-collections": {
+    "w": 1771,
+    "h": 990
+  },
+  "web/home": {
+    "w": 1763,
+    "h": 986
+  },
+  "web/internet-radio": {
+    "w": 1769,
+    "h": 984
+  },
+  "web/internet-radio-player": {
+    "w": 1772,
+    "h": 991
+  },
+  "web/library": {
+    "w": 1769,
+    "h": 986
+  },
+  "web/library-collections": {
+    "w": 1770,
+    "h": 990
+  },
+  "web/library-for-you": {
+    "w": 1769,
+    "h": 989
+  },
+  "web/live-radio-and-tv-provider-access": {
+    "w": 1773,
+    "h": 988
+  },
+  "web/live-tv": {
+    "w": 1770,
+    "h": 985
+  },
+  "web/live-tv-guide": {
+    "w": 1771,
+    "h": 984
+  },
+  "web/music-home": {
+    "w": 1767,
+    "h": 988
+  },
+  "web/music-player-plain": {
+    "w": 1768,
+    "h": 992
+  },
+  "web/music-player-with-lyrics": {
+    "w": 1771,
+    "h": 988
+  },
+  "web/podcast-player": {
+    "w": 1772,
+    "h": 990
+  },
+  "web/podcasts": {
+    "w": 1764,
+    "h": 986
+  },
+  "web/profile-parental-controls": {
+    "w": 1770,
+    "h": 992
+  },
+  "web/profile-scheduled-access-times": {
+    "w": 1769,
+    "h": 991
+  },
+  "web/release-calendar": {
+    "w": 1770,
+    "h": 991
+  },
+  "web/show-season": {
+    "w": 2548,
+    "h": 1265
+  },
+  "web/watchlist": {
+    "w": 1771,
+    "h": 990
+  }
+}

@@ -1,0 +1,36 @@
+---
+import Shot from './Shot.astro';
+
+interface Props {
+  name: string;
+  web: string;
+  phone: string;
+  tv: string;
+  label: string;
+}
+
+const { name, web, phone, tv, label } = Astro.props;
+---
+
+<div class="switcher">
+  <div class="switcher__tabs" role="group" aria-label={`${label} on each platform`}>
+    <input type="radio" name={name} id={`${name}-web`} checked />
+    <label for={`${name}-web`}>Web</label>
+    <input type="radio" name={name} id={`${name}-phone`} />
+    <label for={`${name}-phone`}>Phone</label>
+    <input type="radio" name={name} id={`${name}-tv`} />
+    <label for={`${name}-tv`}>TV</label>
+
+    <div class="switcher__panels">
+      <div class="switcher__panel switcher__panel--web">
+        <Shot src={web} frame="browser" alt={`${label} in the Vora web client`} />
+      </div>
+      <div class="switcher__panel switcher__panel--phone">
+        <Shot src={phone} frame="phone" alt={`${label} on an Android phone`} />
+      </div>
+      <div class="switcher__panel switcher__panel--tv">
+        <Shot src={tv} frame="tv" alt={`${label} on Android TV`} />
+      </div>
+    </div>
+  </div>
+</div>

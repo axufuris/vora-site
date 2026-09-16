@@ -2,8 +2,8 @@
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const links = [
   { href: '/features', label: 'Features' },
-  { href: '/clients', label: 'Clients' },
-  { href: '/install', label: 'Install' },
+  { href: '/apps', label: 'Every screen' },
+  { href: '/server', label: 'Server' },
 ];
 const repo = 'https://github.com/axufuris/VoraMediaServer';
 ---
@@ -22,6 +22,6 @@ const repo = 'https://github.com/axufuris/VoraMediaServer';
       <a class="nav__hide-sm" href={repo} rel="noopener">GitHub</a>
     </nav>
 
-    <a class="btn btn--primary nav__cta" href="/install">Get started</a>
+    <a class="btn btn--primary nav__cta" href="/install">Install</a>
   </div>
 </header>

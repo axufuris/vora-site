@@ -1,140 +1,86 @@
 ---
 import Base from '../layouts/Base.astro';
 import Feature from '../components/Feature.astro';
-import Screenshot from '../components/Screenshot.astro';
-import Code from '../components/Code.astro';
+import Shot from '../components/Shot.astro';
+import PlatformSwitch from '../components/PlatformSwitch.astro';
 
 const repo = 'https://github.com/axufuris/VoraMediaServer';
-
-const surfaces = [
-  {
-    href: '/clients#server',
-    name: 'Server',
-    blurb: 'One Docker container. Scans, enriches, transcodes, records, and streams.',
-  },
-  {
-    href: '/clients#web',
-    name: 'Web client',
-    blurb: 'The full experience, including every admin and server-configuration surface.',
-  },
-  {
-    href: '/clients#phone',
-    name: 'Android phone',
-    blurb: 'Native Kotlin and Compose. Background audio, Cast, picture-in-picture.',
-  },
-  {
-    href: '/clients#tv',
-    name: 'Android TV',
-    blurb: 'The same app, D-pad native: focus rings, a ten-foot guide grid, instant play.',
-  },
-  {
-    href: '/clients#auto',
-    name: 'Android Auto',
-    blurb: 'Music, podcasts, and live radio browsable from the head unit.',
-  },
-];
 ---
 
 <Base
-  title="Vora — Self-hosted media server for movies, TV, music, and live TV"
-  description="Vora is an open-source, self-hosted media server with a cinematic client on the web, Android phone, Android TV, and Android Auto. Movies, TV, music, podcasts, IPTV with DVR. AGPL-3.0, one Docker container."
+  title="Vora — Your movies, shows, music and live TV on every screen"
+  description="Vora is a free, open-source media app for your own library. Movies and shows with cinematic detail pages, music with synced lyrics, podcasts, internet radio, and live TV with a real guide — on the web, your Android phone, your TV, and in the car."
 >
   <section class="hero">
     <div class="shell">
       <span class="hero__badge">
-        <b>AGPL-3.0</b> · Self-hosted · One container
+        <b>Free &amp; open source</b> · Your library, your server
       </span>
 
       <h1>
-        Your media library,<br />
-        <span class="gradient-text">everywhere you watch.</span>
+        Your movies, shows and music,<br />
+        <span class="gradient-text">on every screen you own.</span>
       </h1>
 
       <p class="lede">
-        Vora is a self-hosted media server for movies, TV, music, podcasts, and live TV with DVR —
-        wrapped in a cinematic, themeable client that runs on the web, your phone, your television,
-        and your car.
+        Vora turns your media collection into something that feels like a streaming service — cinematic
+        artwork, cast and crew, synced lyrics, a real live-TV guide, and profiles for everyone in the
+        house. It runs on the web, on Android phones, on your television, and on the dash of your car.
       </p>
 
       <div class="btn-row">
-        <a class="btn btn--primary" href="/install">Get started</a>
-        <a class="btn btn--ghost" href={repo} rel="noopener">
-          <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true">
-            <path d="M12 .5C5.7.5.5 5.7.5 12a11.5 11.5 0 0 0 7.9 10.9c.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.3.9.1-.7.4-1.2.7-1.5-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0C17.4 5 18.4 5.3 18.4 5.3c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.5 11.5 0 0 0 23.5 12C23.5 5.7 18.3.5 12 .5z" />
-          </svg>
-          View on GitHub
-        </a>
-      </div>
-
-      <div class="hero__stats">
-        <div class="hero__stat"><strong>5</strong><span>Surfaces, one library</span></div>
-        <div class="hero__stat"><strong>35+</strong><span>Metadata &amp; artwork plugins</span></div>
-        <div class="hero__stat"><strong>7</strong><span>Built-in visual themes</span></div>
-        <div class="hero__stat"><strong>1</strong><span>Container to deploy</span></div>
+        <a class="btn btn--primary" href="/features">See what it does</a>
+        <a class="btn btn--ghost" href="/apps">Every screen</a>
       </div>
     </div>
   </section>
 
   <section class="section--tight">
     <div class="shell">
-      <Screenshot
-        kind="browser"
-        src="/screenshots/web-home.svg"
-        alt="The Vora web client home screen"
-        url="https://vora.home.lan"
-        width={1600}
-        height={1000}
+      <Shot
+        src="web/home"
+        frame="browser"
+        url="https://vora.local"
+        alt="The Vora home screen showing Continue Watching and Recently Released rows"
+        eager={true}
       />
     </div>
   </section>
 
   <section class="section section--alt">
     <div class="shell">
-      <div class="section-head">
-        <span class="eyebrow">One server</span>
-        <h2>Everything your library needs, in a single process</h2>
+      <div class="section-head center">
+        <span class="eyebrow">One app</span>
+        <h2>Everything you own, in one place</h2>
         <p class="lede">
-          Vora indexes your files, enriches them from the providers you choose, and streams them to
-          any client — with transcoding, subtitles, recording, and recommendations handled server-side.
+          Film night, a podcast on the commute, the ball game, an album while you cook — Vora does not
+          hand you off to a different app for each one.
         </p>
       </div>
 
       <div class="grid">
-        <Feature title="Movies & TV" icon="film">
-          Parallel library scanning with per-item progress, editions and multi-version picker, soft-delete
-          Media Trash, and automatic season and episode metadata refresh.
+        <Feature title="Movies & shows" icon="film">
+          Posters badged with resolution, HDR and audio format, ratings from TMDB and Rotten Tomatoes,
+          full cast and crew, and episodes with their own stills and summaries.
         </Feature>
-        <Feature title="Music, podcasts & radio" icon="music">
-          A full music domain with artists, albums, daily mixes, stations, lyrics, Last.fm scrobbling,
-          crossfade, and an equalizer.
+        <Feature title="Music" icon="music">
+          Artists, albums and playlists with a full-screen player, time-synced lyrics, a visible queue,
+          crossfade and an equalizer.
         </Feature>
-        <Feature title="Live TV & DVR" icon="tv">
-          IPTV playlists and EPG sources as independent aggregates, a real guide grid, timeshift,
-          scheduled recordings, and Comskip commercial detection.
+        <Feature title="Podcasts" icon="cast">
+          Search, subscribe, and pick up each episode where you left it — on whichever device is nearest.
         </Feature>
-        <Feature title="Hardware transcoding" icon="bolt">
-          FFmpeg in the container with NVENC, NVDEC, and CUDA HDR-to-SDR tone mapping working out of
-          the box on any host with the NVIDIA Container Toolkit.
+        <Feature title="Live TV" icon="tv">
+          A real channel guide with categories, favourites, a live preview window, and recording from
+          inside the player.
         </Feature>
-        <Feature title="Subtitles that just work" icon="search">
-          Image subtitles burn in, text subtitles extract to a content-keyed sidecar cache warmed after
-          a scan, and OpenSubtitles search is one click from the player.
+        <Feature title="Internet radio" icon="bolt">
+          Thousands of stations, your favourites pinned, and skip-to-next-station from the player or the
+          steering wheel.
         </Feature>
-        <Feature title="Skip intros & credits" icon="clock">
-          Silence and black-frame analysis clusters markers across a season — intro, recap, preview,
-          credits — with per-profile auto-skip and a manual marker editor.
-        </Feature>
-        <Feature title="Discovery & recommendations" icon="grid">
-          TMDB and MyAnimeList discovery feeds, a watchlist, a release calendar, optional OpenAI-backed
-          smart recommendations, and AI-ordered franchise collections.
-        </Feature>
-        <Feature title="Profiles & sharing" icon="users">
-          Per-profile watch state, ratings, library access, live-refreshed permissions, email
-          invitations, and device tracking with authorized-device management.
-        </Feature>
-        <Feature title="Plugins & themes" icon="plug">
-          Metadata, artwork, lyrics, requests, and list-sync providers load as plugins — and seven
-          bundled visual templates can be scheduled to change by date.
+        <Feature title="Something to watch" icon="search">
+          Discover pulls from TMDB and friends, For You surfaces the good things already sitting unwatched
+          in your library, and a calendar tells you what lands next.
         </Feature>
       </div>
     </div>
@@ -142,91 +88,162 @@ const surfaces = [
 
   <section class="section">
     <div class="shell">
-      <div class="section-head">
-        <span class="eyebrow">Five surfaces</span>
-        <h2>Built for every screen in the house</h2>
-        <p class="lede">
-          The Android client is one Kotlin codebase that adapts to the device it is on, and it mirrors
-          the web client screen for screen. Admin stays on the web, where it belongs.
-        </p>
+      <div class="spotlight">
+        <div class="spotlight__body">
+          <span class="eyebrow">Detail pages</span>
+          <h3>Every title, properly dressed</h3>
+          <p>
+            Artwork fills the page, the cast is a scrollable rail with character names, and every episode
+            carries its own still, air date and summary. Play, add to watchlist, or mark it watched
+            without leaving the page.
+          </p>
+        </div>
+        <Shot
+          src="web/show-season"
+          url="vora.local/shows"
+          alt="A season page with cinematic backdrop, cast rail and episode list"
+        />
       </div>
 
-      <div class="grid">
-        {surfaces.map((surface) => (
-          <a class="card" href={surface.href} style="display: block;">
-            <h3>{surface.name}</h3>
-            <p>{surface.blurb}</p>
-          </a>
-        ))}
+      <div class="spotlight spotlight--reverse">
+        <div class="spotlight__body">
+          <span class="eyebrow">Live TV</span>
+          <h3>A guide that behaves like a guide</h3>
+          <p>
+            Filter by category, region or resolution, star the channels you actually watch, and preview
+            what is on without leaving the grid. Start recording an episode or a whole series from the
+            player.
+          </p>
+        </div>
+        <Shot
+          src="web/live-tv-guide"
+          url="vora.local/live"
+          alt="The Vora live TV guide with a preview window, category filters and a channel grid"
+        />
       </div>
 
-      <div class="btn-row">
-        <a class="btn btn--ghost" href="/clients">Tour the clients</a>
+      <div class="spotlight">
+        <div class="spotlight__body">
+          <span class="eyebrow">Music</span>
+          <h3>With the words, in time</h3>
+          <p>
+            The full-screen player pulls its colour from the album art and scrolls lyrics line by line as
+            the track plays. Queue, shuffle, repeat, like, and per-device audio settings are one tap away.
+          </p>
+        </div>
+        <Shot
+          src="web/music-player-with-lyrics"
+          url="vora.local/music"
+          alt="The Vora music player showing synced lyrics over an art-tinted background"
+        />
+      </div>
+
+      <div class="spotlight spotlight--reverse">
+        <div class="spotlight__body">
+          <span class="eyebrow">For You</span>
+          <h3>The good stuff you forgot you had</h3>
+          <p>
+            Rows like &ldquo;Because you like Animation&rdquo; dig out the highest-rated things in your own
+            library that you have never started — so a big collection stops being a wall of posters you
+            scroll past.
+          </p>
+        </div>
+        <Shot
+          src="web/library-for-you"
+          url="vora.local/library"
+          alt="A library page with For You recommendation rows drawn from the user's own collection"
+        />
       </div>
     </div>
   </section>
 
   <section class="section section--alt">
     <div class="shell">
-      <div class="split">
-        <div>
-          <span class="eyebrow">Deploy</span>
-          <h2>Two containers, five minutes</h2>
-          <p class="lede">
-            Vora ships as a single image bundling the API and the React client, and applies its own
-            database migrations on startup. Point it at PostgreSQL with <code>pgvector</code>, mount your
-            media read-only, and open the port.
-          </p>
-          <ul class="checklist" style="margin-top: 1.5rem;">
-            <li><strong>PUID / PGID support</strong> — bind mounts are writable with no host-side chown.</li>
-            <li><strong>Auto-migrating</strong> — new versions upgrade the schema before serving traffic.</li>
-            <li><strong>Unraid-friendly</strong> — a documented Community Applications template walkthrough.</li>
-            <li><strong>Config as environment</strong> — seed plugin API keys straight from compose.</li>
-          </ul>
-          <div class="btn-row">
-            <a class="btn btn--primary" href="/install">Installation guide</a>
-          </div>
-        </div>
+      <div class="section-head center">
+        <span class="eyebrow">Every screen</span>
+        <h2>The same library, wherever you are</h2>
+        <p class="lede">
+          One Android app reshapes itself for a phone, a television and a car. Nothing is a stretched
+          tablet layout, and nothing important is missing from the small screen.
+        </p>
+      </div>
 
-        <Code label="docker-compose.yml">{`services:
-  postgres:
-    image: pgvector/pgvector:pg16
-    environment:
-      POSTGRES_DB: vora
-      POSTGRES_USER: vora
-      POSTGRES_PASSWORD: change-me
-    volumes:
-      - /srv/vora/postgres-data:/var/lib/postgresql/data
+      <PlatformSwitch name="home-shot" label="Home" web="web/home" phone="phone/home" tv="tv/home" />
 
-  vora:
-    image: ghcr.io/axufuris/vora-media-server:latest
-    depends_on: [postgres]
-    ports: ["8080:8080"]
-    environment:
-      ConnectionStrings__DefaultConnection: >-
-        Host=postgres;Database=vora;Username=vora;Password=change-me
-      Jwt__SecretKey: REPLACE_WITH_A_LONG_RANDOM_STRING
-    volumes:
-      - /srv/vora/data:/app/data
-      - /srv/vora/transcode:/transcode
-      - /mnt/media:/media:ro`}</Code>
+      <div class="btn-row" style="justify-content: center;">
+        <a class="btn btn--ghost" href="/apps">Tour every platform</a>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="shell">
-      <div class="cta-band">
-        <h2>Free, open source, and yours</h2>
-        <p class="lede center" style="margin-bottom: 0;">
-          Vora is released under the AGPL-3.0. Read the source, run it at home, fork it, or send a
-          pull request.
-        </p>
-        <div class="btn-row" style="justify-content: center;">
-          <a class="btn btn--primary" href="/install">Install Vora</a>
-          <a class="btn btn--ghost" href={repo} rel="noopener">Browse the source</a>
+      <div class="spotlight">
+        <div class="spotlight__body">
+          <span class="eyebrow">Profiles</span>
+          <h3>Built for a household, not a person</h3>
+          <p>
+            Every profile gets its own watch state, recommendations and layout. Parental controls set
+            allowed ratings per media type, hide unrated titles, and limit which libraries and channels a
+            profile can reach — with scheduled access windows for the ones who would otherwise watch
+            until 2am.
+          </p>
         </div>
+        <Shot
+          src="web/profile-parental-controls"
+          url="vora.local/settings"
+          alt="The profile editor open on the Parental Controls tab with per-rating toggles"
+        />
       </div>
+
+      <div class="spotlight spotlight--reverse">
+        <div class="spotlight__body">
+          <span class="eyebrow">Make it yours</span>
+          <h3>Rearrange it, then repaint it</h3>
+          <p>
+            Choose which rows appear on Home and in what order, reorder the navigation, and switch the
+            whole client to a different visual template — colours, type and all — per profile.
+          </p>
+        </div>
+        <Shot
+          src="web/client-templates"
+          url="vora.local/settings"
+          alt="The client template picker showing alternative visual themes"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="shell">
+      <div class="section-head center">
+        <span class="eyebrow">Where next</span>
+        <h2>Two doors from here</h2>
+      </div>
+
+      <div class="doors">
+        <a class="door" href="/features">
+          <h3>What the app can do</h3>
+          <p>
+            The full tour — library and playback, discovery, live TV and DVR, music and podcasts,
+            collections, playlists, profiles and themes.
+          </p>
+          <span>Explore the features &rarr;</span>
+        </a>
+
+        <a class="door" href="/server">
+          <h3>Running your own server</h3>
+          <p>
+            The administration side — libraries and scanning, plugins, IPTV, transcoding, backups, a Plex
+            importer, and what it takes to deploy.
+          </p>
+          <span>Server &amp; administration &rarr;</span>
+        </a>
+      </div>
+
+      <p class="muted center" style="margin-top: 2.5rem;">
+        Vora is released under the AGPL-3.0. <a href={repo} rel="noopener">Read the source on GitHub</a>.
+      </p>
     </div>
   </section>
 </Base>

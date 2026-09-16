@@ -1,0 +1,57 @@
+---
+import sizes from '../data/screenshots.json';
+
+interface Props {
+  src: string;
+  frame?: 'browser' | 'phone' | 'tv' | 'plain';
+  alt: string;
+  caption?: string;
+  url?: string;
+  eager?: boolean;
+  class?: string;
+}
+
+const {
+  src,
+  frame = 'browser',
+  alt,
+  caption,
+  url = 'vora.local',
+  eager = false,
+  class: className = '',
+} = Astro.props;
+
+const dims = (sizes as Record<string, { w: number; h: number }>)[src];
+if (!dims) throw new Error(`Unknown screenshot "${src}" — run: npm run screenshots`);
+
+const landscape = frame === 'phone' && dims.w > dims.h;
+const frameClass = landscape ? 'phone-land' : frame;
+const href = `/screenshots/${src}.webp`;
+const loading = eager ? 'eager' : 'lazy';
+const fetchpriority = eager ? 'high' : 'auto';
+---
+
+<figure class={`frame frame--${frameClass} ${className}`}>
+  {frame === 'browser' && (
+    <div class="frame__bar">
+      <span class="frame__dot"></span>
+      <span class="frame__dot"></span>
+      <span class="frame__dot"></span>
+      <span class="frame__url">{url}</span>
+    </div>
+  )}
+
+  <img
+    class="shot"
+    src={href}
+    alt={alt}
+    width={dims.w}
+    height={dims.h}
+    loading={loading}
+    fetchpriority={fetchpriority}
+    decoding="async"
+  />
+
+  {frame === 'tv' && <span class="frame__stand" aria-hidden="true"></span>}
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>

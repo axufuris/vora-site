@@ -1,0 +1,158 @@
+---
+import Base from '../layouts/Base.astro';
+import Shot from '../components/Shot.astro';
+
+const androidRepo = 'https://github.com/axufuris/Vora.Android';
+---
+
+<Base
+  title="Every screen — Vora on web, Android, TV and in the car"
+  description="Vora on the web, on an Android phone, on Android TV and through Android Auto. One library and one account, with an interface shaped for each screen."
+>
+  <section class="section section--tight">
+    <div class="shell">
+      <span class="eyebrow">Every screen</span>
+      <h1 style="font-size: clamp(2rem, 5vw, 3.2rem);">One library, four ways in</h1>
+      <p class="lede">
+        The Android client is a single app that reshapes itself for the device it launches on — touch on
+        a phone, a D-pad on the television, and a browsable audio tree in the car. Your watch state,
+        watchlist and settings follow you between all of them.
+      </p>
+
+      <nav class="surface-nav" style="margin-top: 2.5rem;" aria-label="Platforms">
+        <a href="#web">Web</a>
+        <a href="#phone">Android phone</a>
+        <a href="#tv">Android TV</a>
+        <a href="#auto">Android Auto</a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="surface" id="web">
+    <div class="shell">
+      <div class="spotlight spotlight--wide">
+        <div class="spotlight__body" style="max-width: 70ch;">
+          <span class="pill">Web</span>
+          <h3 style="margin-top: 1rem;">The full house</h3>
+          <p>
+            Any browser on any machine, nothing to install. The web client is also the only place the
+            server's administration lives, so this is where you set libraries up — and then mostly stop
+            thinking about them.
+          </p>
+        </div>
+      </div>
+
+      <Shot src="web/home" url="https://vora.local" alt="The Vora web client home screen" />
+
+      <div class="gallery gallery--two" style="margin-top: 2.5rem;">
+        <Shot src="web/library" url="vora.local/library" alt="Library browse on the web" caption="Library" />
+        <Shot src="web/discovery" url="vora.local/discover" alt="Discover on the web" caption="Discover" />
+        <Shot src="web/live-tv-guide" url="vora.local/live" alt="Live TV guide on the web" caption="Live TV guide" />
+        <Shot src="web/music-home" url="vora.local/music" alt="Music on the web" caption="Music" />
+      </div>
+    </div>
+  </section>
+
+  <section class="surface" id="phone">
+    <div class="shell">
+      <div class="spotlight">
+        <div class="spotlight__body">
+          <span class="pill">Android phone</span>
+          <h3 style="margin-top: 1rem;">Native, not a web page in a wrapper</h3>
+          <p>
+            Kotlin and Jetpack Compose throughout. Video plays through ExoPlayer with picture-in-picture
+            and Google Cast; audio keeps going in the background with proper lock-screen controls, a
+            sleep timer and an equalizer. Sign in once per server — several servers are fine — and the
+            profile picker remembers who you were.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--ghost" href={androidRepo} rel="noopener">Android source</a>
+          </div>
+        </div>
+        <Shot src="phone/home" frame="phone" alt="Vora home screen on an Android phone" />
+      </div>
+
+      <div class="gallery gallery--phones" style="margin-top: 3.5rem;">
+        <Shot src="phone/library" frame="phone" alt="Library on an Android phone" caption="Library" />
+        <Shot src="phone/show-season" frame="phone" alt="A season page on an Android phone" caption="Season" />
+        <Shot src="phone/music-player-with-lyrics" frame="phone" alt="Music player with lyrics on an Android phone" caption="Lyrics" />
+        <Shot src="phone/podcasts" frame="phone" alt="Podcasts on an Android phone" caption="Podcasts" />
+        <Shot src="phone/discovery" frame="phone" alt="Discover on an Android phone" caption="Discover" />
+      </div>
+
+      <div style="margin-top: 3rem;">
+        <Shot
+          src="phone/live-tv-guide"
+          frame="phone"
+          alt="The live TV guide on an Android phone, held sideways"
+          caption="Turn the phone sideways and the guide becomes the same grid you get on the desktop"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="surface" id="tv">
+    <div class="shell">
+      <div class="spotlight spotlight--wide">
+        <div class="spotlight__body" style="max-width: 70ch;">
+          <span class="pill">Android TV</span>
+          <h3 style="margin-top: 1rem;">The same app, ten feet back</h3>
+          <p>
+            Vora notices it is on a television and rebuilds its shell around the remote: an icon rail
+            instead of a drawer, a focus ring on everything, and a hero that fills in the details of
+            whatever the D-pad is currently sitting on. The live guide becomes a grid you can actually
+            steer, and the player controls are built for a remote rather than adapted from touch.
+          </p>
+        </div>
+      </div>
+
+      <Shot src="tv/home" frame="tv" alt="Vora on Android TV with the focus ring on a poster" />
+
+      <div class="gallery gallery--two" style="margin-top: 2.5rem;">
+        <Shot src="tv/library" frame="tv" alt="Library on Android TV" caption="Library" />
+        <Shot src="tv/live-tv-guide" frame="tv" alt="Live guide on Android TV" caption="Live guide" />
+        <Shot src="tv/show-season" frame="tv" alt="A season page on Android TV" caption="Season" />
+        <Shot src="tv/music-player-with-lyrics" frame="tv" alt="Music with lyrics on Android TV" caption="Lyrics on the big screen" />
+      </div>
+    </div>
+  </section>
+
+  <section class="surface" id="auto">
+    <div class="shell">
+      <div class="spotlight spotlight--wide">
+        <div class="spotlight__body" style="max-width: 70ch;">
+          <span class="pill">Android Auto</span>
+          <h3 style="margin-top: 1rem;">Your library on the dashboard</h3>
+          <p>
+            The car gets a real browse tree rather than a mirrored phone screen: Music as Recently Played,
+            Top Tracks, Liked Songs, Artists and Albums; Podcasts as new episodes and subscriptions; Radio
+            as favourites and all stations. Stations play as a queue, so previous and next skip between
+            them, and a star button on the head unit favourites the one you are on — the same star you
+            would tap on the phone.
+          </p>
+          <p>
+            Video is deliberately left out. Plays from the car still count, so Recently Played and Top
+            Tracks stay honest.
+          </p>
+          <p class="muted">
+            One caveat worth knowing before you go looking: Android Auto hides media apps that were not
+            installed from the Play Store until you enable Developer settings &rarr; &ldquo;Unknown
+            sources&rdquo; in the Android Auto app. That is a phone setting, not something the app can
+            switch on for you.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="shell center">
+      <h2>Ready to set one up?</h2>
+      <p class="lede">One container, one database, your media mounted read-only.</p>
+      <div class="btn-row" style="justify-content: center;">
+        <a class="btn btn--primary" href="/install">Installation guide</a>
+        <a class="btn btn--ghost" href="/features">Back to the features</a>
+      </div>
+    </div>
+  </section>
+</Base>

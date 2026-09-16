@@ -1,0 +1,253 @@
+---
+import Base from '../layouts/Base.astro';
+import Shot from '../components/Shot.astro';
+import Feature from '../components/Feature.astro';
+
+const repo = 'https://github.com/axufuris/VoraMediaServer';
+
+const providers = [
+  ['Metadata', 'TMDB, TVDB, OMDb / IMDb ratings, local NFO and image assets'],
+  ['Artwork', 'TMDB, TVDB, Fanart.tv, MediUX, TheAudioDB, MusicBrainz, MyAnimeList, local assets'],
+  ['Discovery', 'TMDB Discovery, MyAnimeList Discovery, iTunes podcasts'],
+  ['Lists & chronology', 'Trakt.tv, MDbList, IMDb public lists, AI franchise ordering'],
+  ['Music', 'Last.fm scrobbling, Genius and LRClib lyrics'],
+  ['Requests', 'Radarr and Sonarr requesters plus release calendars'],
+  ['Subtitles', 'OpenSubtitles search with API-key or account authentication'],
+  ['Extras', 'SerpApi showtimes, OpenAI smart recommendations, native poster overlays'],
+];
+---
+
+<Base
+  title="Server & administration — Vora"
+  description="The administration side of Vora: libraries and scanning, metadata and artwork plugins, IPTV setup, poster overlays, deduplication, backups, a Plex importer, hardware transcoding and the architecture underneath."
+>
+  <section class="section section--tight">
+    <div class="shell">
+      <span class="eyebrow">Server</span>
+      <h1 style="font-size: clamp(2rem, 5vw, 3.2rem);">The half nobody should have to think about</h1>
+      <p class="lede">
+        Vora is one Docker container holding a .NET API, the built web client, FFmpeg and Comskip. It
+        scans your files, enriches them from whichever providers you enable, analyzes them for chapter
+        markers, transcodes on demand, and records live television — then gets out of the way.
+      </p>
+
+      <div class="btn-row">
+        <a class="btn btn--primary" href="/install">Installation guide</a>
+        <a class="btn btn--ghost" href={`${repo}/tree/main/docs`} rel="noopener">Architecture docs</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="shell">
+      <Shot
+        src="admin/dashboard"
+        url="vora.local/admin"
+        alt="The Vora admin dashboard showing live streams, CPU, memory, bandwidth and library status"
+        caption="Live activity, system health and every library at a glance — refreshed over SignalR, not on a page reload"
+      />
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="shell">
+      <div class="spotlight">
+        <div class="spotlight__body">
+          <span class="pill">Libraries</span>
+          <h3 style="margin-top: 1rem;">Point it at a folder and leave</h3>
+          <p>
+            Libraries scan in parallel, unit by unit, with live per-item progress. A watcher picks up new
+            files as they appear, exclude filters keep samples and extras out, and multiple files for one
+            title become selectable editions rather than duplicate entries. Anything you correct by hand
+            can be locked so the next refresh leaves it alone.
+          </p>
+        </div>
+        <Shot src="admin/library-management" url="vora.local/admin" alt="Library management in the Vora admin" />
+      </div>
+
+      <div class="spotlight spotlight--reverse">
+        <div class="spotlight__body">
+          <span class="pill">Plugins</span>
+          <h3 style="margin-top: 1rem;">Bring your own providers</h3>
+          <p>
+            Every external integration is a plugin with its own settings page. API keys can be seeded
+            from environment variables at startup, so a fresh deployment comes up already configured —
+            and anything you later change in the UI wins from then on.
+          </p>
+        </div>
+        <Shot src="admin/plugin-system" url="vora.local/admin" alt="The plugin list in the Vora admin" />
+      </div>
+
+      <div class="table-wrap" style="margin-top: 3rem;">
+        <table>
+          <thead><tr><th>Category</th><th>Bundled providers</th></tr></thead>
+          <tbody>
+            {providers.map(([category, list]) => (
+              <tr>
+                <td style="color: var(--text-primary); font-weight: 600;">{category}</td>
+                <td>{list}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow">Live TV</span>
+        <h2>Playlists in, guide out</h2>
+        <p class="lede">
+          IPTV playlists and EPG sources are configured independently, so one guide can cover several
+          providers and one provider can feed several playlists. Internet radio is set up the same way.
+        </p>
+      </div>
+
+      <div class="gallery">
+        <Shot src="admin/iptv-setup" url="vora.local/admin" alt="IPTV playlist and EPG configuration" caption="IPTV playlists and EPG sources" />
+        <Shot src="admin/internet-radio-setup" url="vora.local/admin" alt="Internet radio station configuration" caption="Internet radio" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="shell">
+      <div class="spotlight">
+        <div class="spotlight__body">
+          <span class="pill">Coming from Plex</span>
+          <h3 style="margin-top: 1rem;">Bring your history with you</h3>
+          <p>
+            The importer reads an existing Plex install and carries across what actually hurts to lose —
+            so switching does not mean starting every show from episode one again.
+          </p>
+        </div>
+        <Shot src="admin/plex-import" url="vora.local/admin" alt="The Plex import tool in the Vora admin" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow">Housekeeping</span>
+        <h2>The unglamorous, necessary things</h2>
+      </div>
+
+      <div class="grid">
+        <Feature title="Deduplication" icon="grid">
+          Find the same title sitting on disk three times and decide what to keep, with the quality of
+          each copy spelled out.
+        </Feature>
+        <Feature title="Media trash" icon="shield">
+          A missing file is hidden rather than deleted, and per-profile ratings and watch state are
+          preserved so a re-add restores them.
+        </Feature>
+        <Feature title="Backups" icon="clock">
+          Scheduled zip backups with retention, restored atomically — a failed restore leaves nothing
+          half-applied.
+        </Feature>
+        <Feature title="Smart lists" icon="sliders">
+          Server-wide rule-based rows that feed everyone's home screen without anyone curating them.
+        </Feature>
+        <Feature title="Poster overlays" icon="film">
+          Burn resolution, HDR and audio-format badges onto posters on a schedule, resolved from the best
+          copy you have.
+        </Feature>
+        <Feature title="Logs & tasks" icon="search">
+          A live log tail with runtime level overrides, and a task queue with real progress and per-task
+          cancellation.
+        </Feature>
+      </div>
+
+      <div class="gallery gallery--two" style="margin-top: 3rem;">
+        <Shot src="admin/duplicate-file-management" url="vora.local/admin" alt="Duplicate file management" caption="Deduplication" />
+        <Shot src="admin/backups" url="vora.local/admin" alt="Backup and restore" caption="Backup & restore" />
+        <Shot src="admin/smart-list-management" url="vora.local/admin" alt="Smart list management" caption="Smart lists" />
+        <Shot src="admin/poster-overlay-engine" url="vora.local/admin" alt="The poster overlay engine" caption="Poster overlays" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="shell">
+      <div class="spotlight">
+        <div class="spotlight__body">
+          <span class="pill">Appearance</span>
+          <h3 style="margin-top: 1rem;">Set the look for everyone</h3>
+          <p>
+            Client templates are managed server-side: pick the default look, schedule seasonal ones by
+            date range, and let each profile override it if they want to.
+          </p>
+        </div>
+        <Shot src="admin/client-theming" url="vora.local/admin" alt="Client theming in the Vora admin" />
+      </div>
+
+      <div class="spotlight spotlight--reverse">
+        <div class="spotlight__body">
+          <span class="pill">AI usage</span>
+          <h3 style="margin-top: 1rem;">Optional, and accounted for</h3>
+          <p>
+            The AI-backed features — smart recommendations and chronological franchise ordering — are
+            opt-in and bring your own key. A usage page shows exactly what has been spent, so nothing
+            runs up a bill quietly.
+          </p>
+        </div>
+        <Shot src="admin/ai-usage" url="vora.local/admin" alt="AI usage and statistics" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow">Under the hood</span>
+        <h2>What it is made of</h2>
+      </div>
+
+      <div class="grid">
+        <Feature title=".NET 10 + PostgreSQL" icon="bolt">
+          Minimal APIs over PostgreSQL with the <code>vector</code> extension, EF Core migrations applied
+          automatically on startup, and SignalR for live updates.
+        </Feature>
+        <Feature title="Hardware transcoding" icon="film">
+          FFmpeg in the container with NVENC, NVDEC and CUDA HDR-to-SDR tone mapping working out of the
+          box on any host running the NVIDIA Container Toolkit.
+        </Feature>
+        <Feature title="Subtitles done properly" icon="search">
+          Image subtitles burn in; text subtitles extract to a content-keyed cache warmed after a scan,
+          never on the play path. OpenSubtitles search is one click from the player.
+        </Feature>
+        <Feature title="Chapter analysis" icon="clock">
+          Silence and black-frame detection clustered across a whole season produces intro, recap,
+          preview and credits markers — with a manual editor when it guesses wrong.
+        </Feature>
+        <Feature title="One tuner budget" icon="tv">
+          Live, timeshift and DVR all draw from the same concurrent-stream limit, so nothing quietly
+          steals a tuner mid-recording.
+        </Feature>
+        <Feature title="Devices & access" icon="users">
+          Every client identifies itself, authorized devices can be revoked, and permission changes take
+          effect live rather than at the next sign-in.
+        </Feature>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="shell">
+      <div class="cta-band">
+        <h2>Two containers, five minutes</h2>
+        <p class="lede center" style="margin-bottom: 0;">
+          Postgres with <code>pgvector</code>, the Vora image, your media mounted read-only. It migrates
+          its own schema on every upgrade.
+        </p>
+        <div class="btn-row" style="justify-content: center;">
+          <a class="btn btn--primary" href="/install">Installation guide</a>
+          <a class="btn btn--ghost" href={repo} rel="noopener">Browse the source</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
