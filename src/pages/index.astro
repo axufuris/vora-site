@@ -5,6 +5,7 @@ import Shot from '../components/Shot.astro';
 import PlatformSwitch from '../components/PlatformSwitch.astro';
 
 const repo = 'https://github.com/axufuris/VoraMediaServer';
+const donate = 'https://paypal.me/axufuris';
 ---
 
 <Base
@@ -336,9 +337,19 @@ const repo = 'https://github.com/axufuris/VoraMediaServer';
         </a>
       </div>
 
-      <p class="muted center" style="margin-top: 2.5rem;">
-        Vora is released under the AGPL-3.0. <a href={repo} rel="noopener">Read the source on GitHub</a>.
-      </p>
+      <div class="cta-band" style="margin-top: 2.5rem;">
+        <h2 style="font-size: clamp(1.4rem, 2.6vw, 1.9rem);">Free, and staying that way</h2>
+        <p class="lede center">
+          Vora is one person's project, released under the AGPL-3.0. There is no paid tier, no account to
+          make and nothing held back — if it saves you a subscription, that is the point. If you would
+          like to put something toward the time it takes, that is genuinely appreciated and never
+          expected.
+        </p>
+        <div class="btn-row" style="justify-content: center;">
+          <a class="btn btn--primary" href={donate} rel="noopener">Buy me a coffee</a>
+          <a class="btn btn--ghost" href={repo} rel="noopener">Read the source</a>
+        </div>
+      </div>
     </div>
   </section>
 </Base>
