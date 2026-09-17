@@ -1,9 +1,9 @@
 ---
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const links = [
-  { href: '/features', label: 'Features' },
-  { href: '/apps', label: 'Every screen' },
-  { href: '/server', label: 'Server' },
+  { href: '/features', label: 'Features', short: 'Features' },
+  { href: '/apps', label: 'Every screen', short: 'Apps' },
+  { href: '/server', label: 'Server', short: 'Server' },
 ];
 const repo = 'https://github.com/axufuris/VoraMediaServer';
 ---
@@ -11,14 +11,16 @@ const repo = 'https://github.com/axufuris/VoraMediaServer';
 <header class="nav">
   <div class="shell nav__inner">
     <a class="nav__brand" href="/">
-      <img src="/vora-mark.svg" alt="" width="26" height="26" />
-      <span>Vora</span>
+      <img src="/vora-logo.svg" alt="Vora" width="87" height="24" />
       <span class="badge-beta">Beta</span>
     </a>
 
     <nav class="nav__links" aria-label="Primary">
       {links.map((link) => (
-        <a href={link.href} aria-current={path === link.href ? 'page' : undefined}>{link.label}</a>
+        <a href={link.href} aria-current={path === link.href ? 'page' : undefined}>
+          <span class="nav__label-full">{link.label}</span>
+          <span class="nav__label-short">{link.short}</span>
+        </a>
       ))}
       <a class="nav__hide-sm" href={repo} rel="noopener">GitHub</a>
     </nav>
