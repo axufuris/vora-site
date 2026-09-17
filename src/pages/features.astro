@@ -5,13 +5,16 @@ import Feature from '../components/Feature.astro';
 
 const jump = [
   ['#library', 'Library'],
+  ['#streaming', 'Streaming'],
   ['#discover', 'Discover'],
-  ['#live', 'Live TV'],
+  ['#live', 'Live TV &amp; DVR'],
   ['#audio', 'Music &amp; audio'],
   ['#organize', 'Collections'],
   ['#ai', 'AI'],
+  ['#requests', 'Requests'],
   ['#household', 'Profiles'],
   ['#personal', 'Personalize'],
+  ['#roadmap', 'Coming soon'],
 ];
 ---
 
@@ -57,12 +60,119 @@ const jump = [
           <h3 style="margin-top: 1rem;">Cast, crew and every episode</h3>
           <p>
             Detail pages lead with the backdrop, then the cast rail with character names, then the
-            episodes — each with its own still, air date, runtime and summary. Intro, recap and credits
-            markers are detected automatically, so skip buttons appear where they should and auto-skip
-            is a per-profile choice.
+            episodes — each with its own still, air date, runtime and summary.
+          </p>
+          <p>
+            Vora analyses each file for silence and black frames and clusters the results across a whole
+            season, so <strong>Skip Intro</strong>, <strong>Skip Recap</strong> and
+            <strong>Skip Credits</strong> appear exactly when they should — and the seekbar paints the
+            bands so you can see them coming. Each profile decides whether intros and credits skip on
+            their own. Mid- and post-credits scenes never auto-skip; you get a
+            <strong>Skip to Scene</strong> button instead, because skipping a stinger is not a
+            convenience. Markers can be edited by hand and locked so the next scan leaves them alone.
           </p>
         </div>
         <Shot src="web/show-season" url="vora.local/shows" alt="A season detail page with cast rail and episode list" />
+      </div>
+    </div>
+  </section>
+
+
+  <section class="surface" id="streaming">
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow">Streaming</span>
+        <h2>How playback is decided</h2>
+        <p class="lede">
+          Most of what separates a pleasant self-hosted library from an annoying one happens in the
+          half-second between pressing play and the picture appearing. Here is what Vora does in it.
+        </p>
+      </div>
+
+      <div class="spotlight spotlight--wide">
+        <div class="spotlight__body" style="max-width: 74ch;">
+          <h3>The client measures itself first</h3>
+          <p>
+            Rather than assuming what a device can handle from its user agent, each client probes its own
+            decoders and reports the result: which of H.264, HEVC, VP9 and AV1 actually decode; which of
+            AAC, AC3, E-AC3, Opus, FLAC and MP3 it accepts; which containers it will open; how many audio
+            channels are available; whether the screen can render HDR10, HLG or Dolby Vision; and whether
+            the decoder is 10-bit or 8-bit.
+          </p>
+          <p>
+            Two details that matter in practice. Android only claims HEVC when both the 8-bit and 10-bit
+            decoders exist, because a decoder that advertises HEVC and then chokes on a 10-bit file is
+            worse than one that never claimed it. And on Android TV, Vora detects when the connected
+            receiver can bitstream AC3, E-AC3 or DTS — so a surround track is passed through to the amp
+            instead of being quietly downmixed to stereo.
+          </p>
+        </div>
+      </div>
+
+      <div class="spotlight spotlight--wide" style="margin-top: clamp(3rem, 6vw, 4rem);">
+        <div class="spotlight__body" style="max-width: 74ch;">
+          <h3>The server scores every option it has</h3>
+          <p>
+            Vora does not look at one file and decide yes or no. It takes every copy of the title you own
+            and every audio track inside each one, scores all of those combinations against what your
+            device just told it, and picks the cheapest path that will genuinely play. Video and audio
+            are decided separately, so a file with one unsupported audio track gets its video copied
+            straight through while only the sound is re-encoded.
+          </p>
+          <p>
+            The scoring has opinions. A 4K source scaled down beats a native 720p copy, because the
+            picture is better. The closest-fitting source wins over a needlessly large one. The default
+            audio track gets a nudge — and a track with &ldquo;commentary&rdquo; in its name gets pushed
+            firmly down the list, because nobody means to start a film on the director's commentary.
+          </p>
+          <p class="note">
+            When it does transcode, the output is H.264 and AAC over HLS — the combination essentially
+            everything can play. Transcoding an HDR source tone-maps it to SDR, and the player badge and
+            history record what you were actually served rather than what the file claims, so nothing
+            says 4K HDR while you are watching 1080p SDR.
+          </p>
+        </div>
+      </div>
+
+      <div class="paths">
+        <div class="path">
+          <span class="path__label">Best case</span>
+          <h3>Direct play</h3>
+          <p>Container and codecs all supported. The file goes over untouched.</p>
+        </div>
+        <div class="path">
+          <span class="path__label">Next best</span>
+          <h3>Remux</h3>
+          <p>Codecs fine, container wrong. Repackaged into MP4, no frames re-encoded.</p>
+        </div>
+        <div class="path">
+          <span class="path__label">Last resort</span>
+          <h3>Transcode</h3>
+          <p>Something truly cannot play. GPU-accelerated where hardware allows.</p>
+        </div>
+      </div>
+
+      <div class="spotlight" style="margin-top: clamp(3rem, 6vw, 4rem);">
+        <div class="spotlight__body">
+          <h3>You get a say too</h3>
+          <p>
+            Playback settings are per profile <em>and</em> per device, so capping your phone on mobile
+            data does not touch the television. Set a maximum bitrate, a maximum resolution and a
+            channel limit; a preference can only ever ask for less than the hardware can do, never more.
+            The server can separately cap remote streams so someone watching from a hotel does not
+            saturate your upload.
+          </p>
+          <p>
+            An administrator picks the house priority between three profiles —
+            <strong>Client Preference</strong>, <strong>Direct Stream Preference</strong>, which avoids
+            transcoding almost at any cost, and <strong>Bandwidth Optimized</strong>, which trades
+            picture for upload headroom and caps each resolution to a bitrate ceiling.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--ghost" href="/server#streaming">The administrator's side of this</a>
+          </div>
+        </div>
+        <Shot src="admin/dashboard" url="vora.local/admin" alt="The admin dashboard showing active streams and their playback strategy" />
       </div>
     </div>
   </section>
@@ -140,6 +250,36 @@ const jump = [
       <div class="gallery" style="margin-top: 2.5rem;">
         <Shot src="web/live-tv" url="vora.local/live" alt="The live TV channel list" caption="Channels" />
         <Shot src="web/live-radio-and-tv-provider-access" url="vora.local/settings" alt="Per-profile provider access for live TV and radio" caption="Per-profile provider access" />
+      </div>
+
+      <div class="spotlight spotlight--wide" style="margin-top: clamp(3rem, 6vw, 4.5rem);">
+        <div class="spotlight__body" style="max-width: 74ch;">
+          <span class="pill">DVR</span>
+          <h3 style="margin-top: 1rem;">Record it and watch it later</h3>
+          <p>
+            Open a programme in the guide and you get three choices: play the channel,
+            <strong>record this episode</strong>, or <strong>record the series</strong>. A series
+            recording takes a retention rule — keep everything, or only the latest 5, 10 or 20 — and
+            Vora schedules each new episode as the guide predicts it, dropping the oldest when the limit
+            is reached. Cancel one and it asks whether you meant this episode or the whole series.
+          </p>
+          <p>
+            Recordings live on the <strong>DVR</strong> tab beside the guide, grouped by programme and
+            split into Completed, Upcoming and Failed. A finished recording that is still being processed
+            says so rather than playing you a half-written file. Where Comskip has flagged the ad breaks,
+            a <strong>Skip commercial</strong> button appears while you are inside one — offered, never
+            automatic.
+          </p>
+          <p>
+            Live television can also be paused. With timeshift permission, a channel gets a real scrub
+            bar, skip back ten seconds and skip forward thirty — the same controls you would expect from
+            a set-top box, on a stream that is still going out live.
+          </p>
+          <p class="muted">
+            Recording and timeshift are separate per-user permissions, and DVR users can be given a
+            storage quota so one person cannot fill the disk.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -316,6 +456,43 @@ const jump = [
     </div>
   </section>
 
+
+  <section class="surface" id="requests">
+    <div class="shell">
+      <div class="spotlight spotlight--wide">
+        <div class="spotlight__body" style="max-width: 74ch;">
+          <span class="pill">Requests</span>
+          <h3 style="margin-top: 1rem;">The watchlist is the request button</h3>
+          <p>
+            Most media servers make asking for something its own chore: a separate app, a separate login,
+            a form. Vora folds it into the thing people already do. When a viewer adds a title to their
+            watchlist and that title is not in the library, it becomes a request automatically — no
+            second interface, no explaining to your family where the request page is.
+          </p>
+          <p>
+            If the server is connected to Radarr or Sonarr, approved requests go straight there. You
+            decide per user whether they may request at all, and whether their requests need your nod or
+            approve themselves. Two people asking for the same film join one request rather than
+            creating two.
+          </p>
+          <p>
+            From the viewer's side it just reads as status on the title they wanted: <em>Request
+            pending</em>, then <em>Downloading</em>, then <em>Available in library</em> — and an email
+            when it lands, if the server sends mail.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--ghost" href="/server#requests">Setting up request servers</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery gallery--two" style="margin-top: 2.5rem;">
+        <Shot src="web/watchlist" url="vora.local/watchlist" alt="The watchlist, which doubles as the request queue" caption="Add to watchlist — and, if you do not own it, that is the request" />
+        <Shot src="web/discovery" url="vora.local/discover" alt="Discover, where titles already owned are flagged in library" caption="Discover flags what you already own, so you only ask for what is missing" />
+      </div>
+    </div>
+  </section>
+
   <section class="surface" id="household">
     <div class="shell">
       <div class="spotlight">
@@ -366,6 +543,45 @@ const jump = [
         caption="Client templates — the whole interface recolours, brand mark included"
         class="spotlight-figure"
       />
+    </div>
+  </section>
+
+
+  <section class="surface" id="roadmap">
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow">Coming soon</span>
+        <h2>Being built now</h2>
+        <p class="lede">
+          Vora is in beta and moving quickly. These are the next things on the bench — no dates, because
+          dates on a one-person project are a promise nobody should make.
+        </p>
+      </div>
+
+      <div class="roadmap">
+        <article>
+          <h3>Ebook libraries</h3>
+          <p>
+            Books as a first-class library alongside films, television and music — shelves, metadata,
+            covers and reading position, handled the same way everything else is.
+          </p>
+        </article>
+        <article>
+          <h3>Custom client templates</h3>
+          <p>
+            Today you choose from the bundled looks. Next, build your own: pick the colours and drop in
+            your own background images, then keep it to yourself or hand it to the household.
+          </p>
+        </article>
+        <article>
+          <h3>Proper multi-server support</h3>
+          <p>
+            The clients already hold more than one server. The goal is for several servers to feel like
+            one library — search, watchlist and continue-watching spanning all of them instead of making
+            you remember which box has what.
+          </p>
+        </article>
+      </div>
     </div>
   </section>
 

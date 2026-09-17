@@ -35,6 +35,11 @@ const providers = [
         <a class="btn btn--primary" href="/install">Installation guide</a>
         <a class="btn btn--ghost" href={`${repo}/tree/main/docs`} rel="noopener">Architecture docs</a>
       </div>
+
+      <p class="muted" style="margin-top: 1.6rem; max-width: 62ch;">
+        Vora is in beta. The schema migrates itself on every upgrade and backups are built in, but treat
+        it as software that is still moving — keep a copy of your data volume.
+      </p>
     </div>
   </section>
 
@@ -112,18 +117,112 @@ const providers = [
     </div>
   </section>
 
-  <section class="section section--alt">
+  <section class="section section--alt" id="requests">
+    <div class="shell">
+      <div class="spotlight spotlight--wide">
+        <div class="spotlight__body" style="max-width: 74ch;">
+          <span class="pill">Requests</span>
+          <h3 style="margin-top: 1rem;">Watchlists that turn into downloads</h3>
+          <p>
+            Connect Radarr and Sonarr under Request Servers — host, API key, quality profile, root folder,
+            minimum availability — and a viewer adding something to their watchlist that you do not own
+            becomes a request. No separate request app for your household to learn.
+          </p>
+          <p>
+            Per user you decide whether they can request at all and whether their requests auto-approve.
+            Everything else lands in the <strong>Request Queue</strong>, split into Pending, Processing and
+            Available, where you can override the quality profile before sending it on. Requests for the
+            same title merge, and when the file finally arrives and matches, the requesters get an email.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="plex">
     <div class="shell">
       <div class="spotlight">
         <div class="spotlight__body">
           <span class="pill">Coming from Plex</span>
           <h3 style="margin-top: 1rem;">Bring your history with you</h3>
           <p>
-            The importer reads an existing Plex install and carries across what actually hurts to lose —
-            so switching does not mean starting every show from episode one again.
+            The importer reads an existing Plex install and carries across the thing that actually hurts
+            to lose: watch state and ratings. Switching does not mean starting every show from episode
+            one again.
+          </p>
+          <p>
+            It is not an admin-only migration, either. Every profile can run it themselves from
+            <strong>Account settings &rarr; Connections &rarr; Import from Plex</strong> — link the Plex
+            account with a PIN, choose which libraries to pull, and their own history comes across into
+            their own profile. So the rest of the household can move their viewing history over without
+            handing you their Plex password, and without waiting for you to do it for them.
+          </p>
+          <p class="muted">
+            Administrators keep the bulk path under Library Migration, which maps several Plex accounts
+            onto several Vora profiles in one run. Either way it is watch state and ratings — media,
+            playlists and collections stay where they are.
           </p>
         </div>
         <Shot src="admin/plex-import" url="vora.local/admin" alt="The Plex import tool in the Vora admin" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="streaming">
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow">Streaming</span>
+        <h2>Deciding what to send, and to whom</h2>
+        <p class="lede">
+          Clients report their own decoder capabilities on every play. The server scores each copy of a
+          title against them and takes the cheapest path that will actually work.
+          <a href="/features#streaming">The viewer-facing version of this is on the features page.</a>
+        </p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Transcoder behaviour priority</th><th>What it changes</th></tr></thead>
+          <tbody>
+            <tr>
+              <td style="color: var(--text-primary); font-weight: 600;">Client Preference</td>
+              <td>The default. Transcodes when something genuinely needs it, with no thumb on the scale.</td>
+            </tr>
+            <tr>
+              <td style="color: var(--text-primary); font-weight: 600;">Direct Stream Preference</td>
+              <td>
+                Weights the scoring so heavily against transcoding that any playable copy wins. Best
+                where CPU or GPU headroom is the scarce resource.
+              </td>
+            </tr>
+            <tr>
+              <td style="color: var(--text-primary); font-weight: 600;">Bandwidth Optimized</td>
+              <td>
+                Trades picture for upload. Penalises high-bitrate and 4K sources and caps delivery to a
+                bitrate ceiling per resolution. The one profile that changes the output itself.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid" style="margin-top: 3rem;">
+        <Feature title="Hardware acceleration" icon="bolt">
+          NVENC and NVDEC with CUDA tone mapping, separate concurrency limits for GPU, CPU and background
+          transcodes, and a choice of tone-mapping algorithm.
+        </Feature>
+        <Feature title="Remote bandwidth limits" icon="sliders">
+          Cap remote streams by bitrate and declare your upload speed; the ceiling adjusts as other remote
+          sessions come and go. Local playback is left alone.
+        </Feature>
+        <Feature title="A visible decision log" icon="search">
+          Watch History records the chosen strategy and every runner-up with its score and reason, filtered
+          by Direct Play, Direct Stream or Transcode. &ldquo;Why did that transcode?&rdquo; has an answer.
+        </Feature>
+        <Feature title="Honest badges" icon="shield">
+          What was actually delivered is stored separately from what the file contains, so the dashboard
+          never reports 4K HDR to someone being served 1080p SDR.
+        </Feature>
       </div>
     </div>
   </section>

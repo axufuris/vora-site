@@ -14,7 +14,7 @@ const repo = 'https://github.com/axufuris/VoraMediaServer';
   <section class="hero">
     <div class="shell">
       <span class="hero__badge">
-        <b>Free &amp; open source</b> · Your library, your server
+        <b>Beta</b> · Free and open source · Your library, your server
       </span>
 
       <h1>
@@ -32,6 +32,11 @@ const repo = 'https://github.com/axufuris/VoraMediaServer';
         <a class="btn btn--primary" href="/features">See what it does</a>
         <a class="btn btn--ghost" href="/apps">Every screen</a>
       </div>
+
+      <p class="muted" style="margin-top: 1.6rem; max-width: 60ch;">
+        Vora is in beta. It runs every day in real homes, but expect the occasional rough edge and
+        keep your backups — <a href="/features#roadmap">here is what is coming next</a>.
+      </p>
     </div>
   </section>
 
@@ -153,6 +158,75 @@ const repo = 'https://github.com/axufuris/VoraMediaServer';
           url="vora.local/library"
           alt="A library page with For You recommendation rows drawn from the user's own collection"
         />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="section-head center">
+        <span class="eyebrow">Streaming</span>
+        <h2>It plays. That is the whole trick.</h2>
+        <p class="lede">
+          The reason a self-hosted library feels bad is usually not the library — it is the
+          buffering, the audio that will not decode, the 4K file that melts the server. Vora spends most
+          of its engineering effort here.
+        </p>
+      </div>
+
+      <div class="paths">
+        <div class="path">
+          <span class="path__label">Best case</span>
+          <h3>Direct play</h3>
+          <p>
+            Your device already speaks the container, the video codec and the audio codec. The file is
+            handed over untouched and the server barely wakes up.
+          </p>
+        </div>
+        <div class="path">
+          <span class="path__label">Next best</span>
+          <h3>Remux</h3>
+          <p>
+            The codecs are fine but the container is not. Vora repackages the stream into MP4 without
+            re-encoding a single frame — cheap, fast, lossless.
+          </p>
+        </div>
+        <div class="path">
+          <span class="path__label">Last resort</span>
+          <h3>Transcode</h3>
+          <p>
+            Only when something genuinely cannot be played — an unsupported codec, a burned-in subtitle,
+            a bitrate your connection will not carry — and then on the GPU where one is available.
+          </p>
+        </div>
+      </div>
+
+      <div class="spotlight" style="margin-top: clamp(3rem, 7vw, 5rem); grid-template-columns: 1fr;">
+        <div class="spotlight__body" style="max-width: 74ch;">
+          <h3>Your device tells the server what it can do</h3>
+          <p>
+            On every play, the client probes its own hardware — which video and audio codecs actually
+            decode, which containers it accepts, how many audio channels are available, whether the
+            display can render HDR10, HLG or Dolby Vision, whether the decoder handles 10-bit — and sends
+            that with the request. On Android TV it also detects when an AV receiver can bitstream
+            AC3, E-AC3 or DTS, so surround is passed through instead of being flattened to stereo.
+          </p>
+          <p>
+            The server then scores every combination of file and audio track it has for that title and
+            picks the cheapest one that will actually play. A 4K remux with a 7.1 track and a 1080p copy
+            with stereo are weighed against each other rather than guessed at — and it can copy the video
+            while transcoding only the audio, instead of re-encoding the whole thing because one track
+            was wrong.
+          </p>
+          <p class="note">
+            Every decision is written down. The admin Watch History shows what each session chose, why,
+            and what the runners-up scored — so &ldquo;why did that transcode?&rdquo; has an answer
+            instead of a shrug.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--ghost" href="/features#streaming">How playback is decided</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
