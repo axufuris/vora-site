@@ -9,6 +9,7 @@ const jump = [
   ['#live', 'Live TV'],
   ['#audio', 'Music &amp; audio'],
   ['#organize', 'Collections'],
+  ['#ai', 'AI'],
   ['#household', 'Profiles'],
   ['#personal', 'Personalize'],
 ];
@@ -221,6 +222,96 @@ const jump = [
       <div class="gallery" style="margin-top: 3rem;">
         <Shot src="web/library-collections" url="vora.local/library" alt="Collections inside a library" caption="Library collections" />
         <Shot src="web/global-collections" url="vora.local/collections" alt="Collections spanning libraries" caption="Global collections" />
+      </div>
+    </div>
+  </section>
+
+
+  <section class="surface" id="ai">
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow">AI</span>
+        <h2>AI, where it actually saves you an afternoon</h2>
+        <p class="lede">
+          Vora does not have a chatbot bolted to the side. It uses a model for three specific jobs that
+          are otherwise tedious hand work — and every one of them is off until you turn it on and supply
+          your own OpenAI key.
+        </p>
+      </div>
+
+      <div class="spotlight">
+        <div class="spotlight__body">
+          <h3>Name a universe, get the collection</h3>
+          <p>
+            Set a collection's list provider to <strong>AI List</strong> and type what you want in plain
+            language — &ldquo;Every movie and show for Marvel Cinematic Universe&rdquo;. Vora works out
+            what belongs, pulls in every film and season, and rechecks on the cadence you set. Tick
+            <em>mirror the list exactly</em> and anything that drops off the list leaves the collection
+            too.
+          </p>
+          <p class="muted">
+            This is for franchises and shared universes. For &ldquo;all my kung-fu movies&rdquo;, a smart
+            collection with rules is the better tool and costs nothing.
+          </p>
+        </div>
+        <Shot
+          src="web/ai-collection-list-filler"
+          frame="plain"
+          alt="The collection editor with AI List selected and a franchise described in plain language"
+        />
+      </div>
+
+      <div class="spotlight spotlight--reverse">
+        <div class="spotlight__body">
+          <h3>Watch it in the order the story happens</h3>
+          <p>
+            Release order and story order are rarely the same thing, and working out the difference by
+            hand is a weekend lost to forum arguments. Pick <strong>AI Chronological Order</strong>,
+            describe how it should run, and the timeline becomes a sort option viewers can switch to —
+            with auto-sync filing anything new into the right slot rather than onto the end.
+          </p>
+        </div>
+        <Shot
+          src="web/ai-collection-chronological-ordering"
+          frame="plain"
+          alt="The chronological ordering panel with AI Chronological Order selected and auto-sync enabled"
+        />
+      </div>
+
+      <div class="spotlight">
+        <div class="spotlight__body">
+          <h3>Recommendations that read the whole shelf</h3>
+          <p>
+            With the recommendations plugin enabled, Vora embeds your library and uses it to build the
+            suggestion rows. Leave it off and For You still works — it falls back to the local engine,
+            which ranks by what you have not watched and how well it scored.
+          </p>
+        </div>
+        <Shot
+          src="web/library-for-you"
+          url="vora.local/library"
+          alt="For You recommendation rows"
+        />
+      </div>
+
+      <div class="spotlight spotlight--reverse">
+        <div class="spotlight__body">
+          <h3>Every token, itemised</h3>
+          <p>
+            Because it is your key and your bill, the server keeps a log: which feature made the call,
+            which profile triggered it, which model answered, how many prompt and completion tokens it
+            used, and what it is estimated to have cost. Filter by date or by feature. Nothing runs up a
+            bill quietly in the background.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--ghost" href="/server">More on the server side</a>
+          </div>
+        </div>
+        <Shot
+          src="admin/ai-usage"
+          url="vora.local/admin"
+          alt="The AI usage and cost page with token counts and a per-call log"
+        />
       </div>
     </div>
   </section>

@@ -189,10 +189,18 @@ const providers = [
           <span class="pill">AI usage</span>
           <h3 style="margin-top: 1rem;">Optional, and accounted for</h3>
           <p>
-            The AI-backed features — smart recommendations and chronological franchise ordering — are
-            opt-in and bring your own key. A usage page shows exactly what has been spent, so nothing
-            runs up a bill quietly.
+            Three features can call a model: filling a collection from a named franchise, ordering one
+            chronologically, and embedding the library for recommendations. All three are off until you
+            enable them and supply your own OpenAI key.
           </p>
+          <p>
+            Every call is logged with its feature, the profile that triggered it, the model, prompt and
+            completion tokens and an estimated cost, filterable by date range or feature. Embeddings can
+            be generated on demand rather than waiting for the schedule.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--ghost" href="/features#ai">What the AI features do</a>
+          </div>
         </div>
         <Shot src="admin/ai-usage" url="vora.local/admin" alt="AI usage and statistics" />
       </div>

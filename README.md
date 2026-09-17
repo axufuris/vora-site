@@ -57,7 +57,7 @@ npm run screenshots
 That writes `public/screenshots/<web|phone|tv|admin>/<kebab-name>.webp` at
 quality 82 and regenerates `src/data/screenshots.json` with each image's real
 pixel dimensions, which `Shot.astro` uses for width/height so nothing shifts as
-the page loads. The last run took 35 MB of PNG down to 4.8 MB of WebP.
+the page loads. The last run took 86 captures from 35 MB of PNG down to 4.9 MB of WebP.
 
 Reference a shot by its key, without extension:
 
