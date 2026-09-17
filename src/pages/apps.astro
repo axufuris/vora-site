@@ -16,7 +16,8 @@ const androidRepo = 'https://github.com/axufuris/Vora.Android';
       <p class="lede">
         The Android client is a single app that reshapes itself for the device it launches on — touch on
         a phone, a D-pad on the television, and a browsable audio tree in the car. Your watch state,
-        watchlist and settings follow you between all of them.
+        watchlist and settings follow you between all of them. Android ships first;
+        <a href="#next">Roku, Apple TV and Fire TV are in the works</a>.
       </p>
 
       <nav class="surface-nav" style="margin-top: 2.5rem;" aria-label="Platforms">
@@ -24,6 +25,7 @@ const androidRepo = 'https://github.com/axufuris/Vora.Android';
         <a href="#phone">Android phone</a>
         <a href="#tv">Android TV</a>
         <a href="#auto">Android Auto</a>
+        <a href="#next">Coming next</a>
       </nav>
     </div>
   </section>
@@ -155,6 +157,51 @@ const androidRepo = 'https://github.com/axufuris/Vora.Android';
           </p>
         </div>
       </div>
+    </div>
+  </section>
+
+
+  <section class="surface" id="next">
+    <div class="shell">
+      <div class="section-head">
+        <span class="eyebrow">Coming next</span>
+        <h2>More living rooms</h2>
+        <p class="lede">
+          Android is the first client out of the door, and it is the one getting a Play Store release.
+          Three more are being built behind it, each native to its platform rather than one codebase
+          stretched across all of them — that is the only way a remote feels right on a Roku and a Siri
+          Remote feels right on an Apple TV.
+        </p>
+      </div>
+
+      <div class="roadmap">
+        <article>
+          <h3>Roku</h3>
+          <p>
+            A native channel for the cheapest box in most living rooms. Beta when it is genuinely usable
+            on a remote, not before.
+          </p>
+        </article>
+        <article>
+          <h3>Apple TV</h3>
+          <p>
+            Built in Swift and SwiftUI so it behaves like a tvOS app — the focus engine, the gestures and
+            the Siri Remote all doing what people already expect.
+          </p>
+        </article>
+        <article>
+          <h3>Fire TV</h3>
+          <p>
+            The other half of the cheap-streaming-stick world, with its own remote conventions to respect.
+          </p>
+        </article>
+      </div>
+
+      <p class="note" style="margin-top: 2.5rem; max-width: 74ch;">
+        All three will arrive as betas first. The server side already speaks to them — clients talk to
+        one shared API and pull their look from the same design tokens the web and Android clients use —
+        so a new platform is a new front end, not a second Vora.
+      </p>
     </div>
   </section>
 
