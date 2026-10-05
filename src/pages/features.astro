@@ -20,7 +20,7 @@ const jump = [
 
 <Base
   title="Features — what the Vora app does"
-  description="A tour of the Vora app: library browsing and playback, discovery and release calendar, live TV with a full guide, music with synced lyrics, podcasts, internet radio, collections and playlists, profiles with parental controls, and per-profile themes."
+  description="A tour of the Vora app: library browsing and playback, discovery and release calendar, live TV with a full guide, music with synced lyrics and AI playlists, podcasts, internet radio, collections and playlists, profiles with parental controls, and per-profile themes."
 >
   <section class="section section--tight">
     <div class="shell">
@@ -242,6 +242,10 @@ const jump = [
             that plays the current programme while you keep browsing. Pause and rewind live TV, and
             schedule a recording for an episode or a whole series from inside the player.
           </p>
+          <p>
+            Favourites belong to your profile rather than the device, so a channel you star on the
+            television is already starred on your phone.
+          </p>
         </div>
       </div>
 
@@ -302,6 +306,17 @@ const jump = [
             Artists, albums, genres, liked songs, top tracks and daily mixes, with a full-screen player
             that tints itself from the album art. Lyrics scroll in time with the track, the queue is one
             tap away, and crossfade, an equalizer and a sleep timer are built in.
+          </p>
+          <p>
+            In the web player, turn on the <strong>Synth</strong> and the music moves on screen as bars,
+            waves or a ring around the cover, coloured from the album art or from your theme. It runs
+            alongside the lyrics, and each device remembers how you left it.
+          </p>
+          <p>
+            The player and album pages show what you are actually hearing &mdash;
+            <em>Hi-Res &middot; FLAC 96 kHz</em>, <em>Lossless</em> or the MP3 bitrate &mdash; and artist
+            pages carry a biography from Last.fm. With AI playlists on, every song is also described by
+            mood and energy, so you can browse the library by mood.
           </p>
         </div>
         <Shot src="web/music-player-with-lyrics" url="vora.local/music" alt="The music player with time-synced lyrics" />
@@ -373,7 +388,7 @@ const jump = [
         <span class="eyebrow">AI</span>
         <h2>AI, where it actually saves you an afternoon</h2>
         <p class="lede">
-          Vora does not have a chatbot bolted to the side. It uses a model for three specific jobs that
+          Vora does not have a chatbot bolted to the side. It uses a model for four specific jobs that
           are otherwise tedious hand work — and every one of them is off until you turn it on and supply
           your own OpenAI key.
         </p>
@@ -432,6 +447,28 @@ const jump = [
           url="vora.local/library"
           alt="For You recommendation rows"
         />
+      </div>
+
+      <div class="spotlight spotlight--wide">
+        <div class="spotlight__body" style="max-width: 74ch;">
+          <h3>Playlists made from your own music</h3>
+          <p>
+            Switch on AI playlists and each profile gets a weekly set of
+            <strong>Made for you by AI</strong> playlists built around what it actually plays, plus a
+            <strong>Bridge</strong> that walks from one of its sounds to another. A <strong>Blend</strong>
+            meets another profile halfway. Or type what you are after &mdash; &ldquo;a road trip that
+            starts mellow and builds&rdquo; &mdash; into <strong>Make me a playlist for&hellip;</strong>,
+            and pick a length or let it choose.
+          </p>
+          <p>
+            Every song comes out of your own library, found by searching the library itself, so nothing
+            invented or missing can turn up, and parental controls still apply. Describing 24,000 songs
+            costs under a dollar, once; each request after that is a fraction of a cent.
+          </p>
+          <p class="muted">
+            Any profile can be opted out, and then nothing about its listening is sent to OpenAI.
+          </p>
+        </div>
       </div>
 
       <div class="spotlight spotlight--reverse">
@@ -531,6 +568,11 @@ const jump = [
             Choose which rows appear on Home and in what order, reorder the navigation itself, and swap
             the client to a different visual template. Templates can even be scheduled, so a seasonal look
             arrives and leaves on its own.
+          </p>
+          <p>
+            Home is not only films and shows. Your favourite channels and radio stations, new podcast
+            episodes, the latest albums and your recent recordings each get a row of their own, and a row
+            with nothing in it stays out of the way.
           </p>
         </div>
         <Shot src="web/customize-home-screen" url="vora.local" alt="The home screen row customizer" />

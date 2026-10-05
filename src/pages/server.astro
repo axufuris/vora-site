@@ -79,6 +79,12 @@ const providers = [
             from environment variables at startup, so a fresh deployment comes up already configured —
             and anything you later change in the UI wins from then on.
           </p>
+          <p>
+            On a new server, the first sign-in opens a <strong>Setup Guide</strong>. It asks what you will
+            host &mdash; films and shows, music, live TV, radio, podcasts &mdash; then walks through only
+            the settings and providers that matter for those, saving as it goes. Leave it halfway and the
+            dashboard reminds you; finish or skip it and System Settings can open it again any time.
+          </p>
         </div>
         <Shot src="admin/plugin-system" url="vora.local/admin" alt="The plugin list in the Vora admin" />
       </div>
@@ -248,15 +254,17 @@ const providers = [
           half-applied.
         </Feature>
         <Feature title="Smart lists" icon="sliders">
-          Server-wide rule-based rows that feed everyone's home screen without anyone curating them.
+          Rule-based rows that feed everyone's home screen, plus rows for each viewer's favourite
+          channels and stations, new podcast episodes, recent albums and DVR recordings. Defaults can be
+          switched off or deleted, and restored in one click.
         </Feature>
         <Feature title="Poster overlays" icon="film">
           Burn resolution, HDR and audio-format badges onto posters on a schedule, resolved from the best
           copy you have.
         </Feature>
         <Feature title="Logs & tasks" icon="search">
-          A live log tail with runtime level overrides, and a task queue with real progress and per-task
-          cancellation.
+          A live log tail with runtime level overrides, and a task queue with real progress, per-task
+          cancellation, and work that picks up again after a restart.
         </Feature>
       </div>
 
@@ -294,9 +302,10 @@ const providers = [
           <span class="pill">AI usage</span>
           <h3 style="margin-top: 1rem;">Optional, and accounted for</h3>
           <p>
-            Three features can call a model: filling a collection from a named franchise, ordering one
-            chronologically, and embedding the library for recommendations. All three are off until you
-            enable them and supply your own OpenAI key.
+            Four features can call a model: filling a collection from a named franchise, ordering one
+            chronologically, embedding the library for recommendations, and AI music playlists. All four
+            are off until you enable them and supply your own OpenAI key, and you set how many playlist
+            requests each profile may make in a day.
           </p>
           <p>
             Every call is logged with its feature, the profile that triggered it, the model, prompt and
