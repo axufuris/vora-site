@@ -114,7 +114,9 @@ docker compose logs -f vora`}</Code>
             <h3>Create the first profile</h3>
             <p>
               Open <code>http://your-host:8080</code>. The first profile you create through the setup flow
-              becomes the server admin. Add your libraries from the admin area and let the first scan run.
+              becomes the server admin, and signing in opens the Setup Guide, which walks through playback,
+              providers, live TV, podcasts, music and AI. Then add your libraries from the admin area and
+              let the first scan run.
             </p>
           </div>
         </div>
@@ -246,7 +248,8 @@ Vora__PluginSettings__openai_recommendations__is_enabled: "true"`}</Code>
           <p style="margin-bottom: 1rem;">
             Pull the new image and restart. Vora detects pending migrations and applies them before it
             serves traffic; your data volume and the Postgres directory persist. If a migration fails the
-            container exits rather than serving a half-migrated schema.
+            container exits rather than serving a half-migrated schema. Background tasks that were queued
+            or running when it stopped are picked up again once it is back.
           </p>
           <Code label="shell">{`docker compose pull vora
 docker compose up -d vora`}</Code>
