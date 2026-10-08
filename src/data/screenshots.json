@@ -200,16 +200,24 @@
     "h": 672
   },
   "tv/music-home": {
-    "w": 1166,
-    "h": 666
+    "w": 1129,
+    "h": 645
   },
   "tv/music-player-plain": {
-    "w": 1165,
-    "h": 669
+    "w": 1127,
+    "h": 646
   },
   "tv/music-player-with-lyrics": {
-    "w": 1162,
-    "h": 665
+    "w": 1123,
+    "h": 644
+  },
+  "tv/music-player-with-lyrics-and-synth": {
+    "w": 1124,
+    "h": 643
+  },
+  "tv/music-player-with-synth": {
+    "w": 1129,
+    "h": 647
   },
   "tv/podcast-player": {
     "w": 1162,
@@ -248,8 +256,8 @@
     "h": 907
   },
   "web/album": {
-    "w": 1769,
-    "h": 981
+    "w": 2034,
+    "h": 1149
   },
   "web/client-templates": {
     "w": 1767,
@@ -268,8 +276,8 @@
     "h": 990
   },
   "web/home": {
-    "w": 1763,
-    "h": 986
+    "w": 2033,
+    "h": 1142
   },
   "web/internet-radio": {
     "w": 1769,
@@ -304,16 +312,24 @@
     "h": 984
   },
   "web/music-home": {
-    "w": 1767,
-    "h": 988
+    "w": 2037,
+    "h": 1143
   },
   "web/music-player-plain": {
-    "w": 1768,
-    "h": 992
+    "w": 2040,
+    "h": 1145
   },
   "web/music-player-with-lyrics": {
-    "w": 1771,
-    "h": 988
+    "w": 2039,
+    "h": 1152
+  },
+  "web/music-player-with-synth": {
+    "w": 2037,
+    "h": 1145
+  },
+  "web/music-player-with-synth-and-lyrics": {
+    "w": 2040,
+    "h": 1149
   },
   "web/podcast-player": {
     "w": 1772,
