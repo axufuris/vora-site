@@ -103,7 +103,7 @@ At the registrar, point the apex at GitHub Pages and `www` at the Pages host:
 
 - [ ] Replace the placeholder screenshots (`public/screenshots/README.md` lists every one).
 - [ ] Confirm the GHCR image is public and `ghcr.io/axufuris/vora-media-server:latest` exists.
-- [ ] Confirm `github.com/axufuris/Vora.Android` is public, or drop the footer link.
+- [x] Link nothing to `github.com/axufuris/Vora.Android`: the Android app is not open source and the repo is private.
 - [ ] Sanity-check the feature copy against the current README.
 
 ## License
