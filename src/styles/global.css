@@ -350,20 +350,13 @@ p { margin: 0 0 1rem; }
   .nav__inner { height: 58px; gap: 0.5rem; }
   .nav__brand { gap: 0.4rem; }
   .nav__brand img { height: 20px; }
-  .nav__brand .badge-beta {
-    font-size: 0.58rem;
-    padding: 0.12rem 0.4rem;
-    letter-spacing: 0.08em;
-  }
   .nav__links { gap: 0.85rem; font-size: 0.8rem; }
   .nav__label-full { display: none; }
   .nav__label-short { display: inline; }
 }
 
-/* Very narrow phones: the wordmark and the links win over the beta pill,
-   which is still stated in the hero and the footer. */
+/* Very narrow phones: tighten the nav so the wordmark and the links fit. */
 @media (max-width: 400px) {
-  .nav__brand .badge-beta { display: none; }
   .nav .shell { padding-inline: 0.9rem; }
   .nav__inner { gap: 0.4rem; }
   .nav__brand img { height: 18px; }
@@ -671,23 +664,7 @@ p { margin: 0 0 1rem; }
   gap: 1.8rem;
 }
 
-/* ---------- Beta + roadmap ---------- */
-
-.badge-beta {
-  display: inline-block;
-  padding: 0.16rem 0.55rem;
-  border-radius: 999px;
-  background: var(--accent-soft);
-  border: 1px solid var(--accent-400);
-  color: var(--accent-100);
-  font-size: 0.68rem;
-  font-weight: 750;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  vertical-align: middle;
-}
-
-.nav__brand .badge-beta { margin-left: 0.1rem; }
+/* ---------- Roadmap ---------- */
 
 .note {
   border-left: 2px solid var(--accent-400);
