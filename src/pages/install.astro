@@ -14,7 +14,7 @@ const env = [
   ['ConnectionStrings__DefaultConnection', 'Npgsql connection string. Use the Postgres container name as the host when both sit on one Docker network.'],
   ['Jwt__SecretKey', 'Long random string signing account and profile tokens. Generate once and keep it stable — rotating it signs everyone out.'],
   ['PUID / PGID', 'User and group the container runs as. Data and transcode mounts are chowned to match on startup, so no host-side chown is needed. Defaults are 99 / 100.'],
-  ['StoragePaths__*', 'Where artwork, the EPG cache, DVR recordings, user images, plugins, and subtitles live inside the container. Keep them under one mounted volume.'],
+  ['StoragePaths__*', 'Where artwork, the EPG cache, DVR recordings, user images, plugins, subtitles, scrub-bar thumbnails, logs, backups, and the keys protecting the saved SMTP password live inside the container. Keep them under one mounted volume: the app folder itself (/app) is not writable.'],
   ['ASPNETCORE_HTTP_PORTS', 'Listening port inside the container. 8080 unless you have a reason.'],
 ];
 ---
@@ -84,6 +84,10 @@ const env = [
       StoragePaths__UserImages: /app/data/users
       StoragePaths__Plugins: /app/data/plugins
       StoragePaths__Subtitles: /app/data/subtitles
+      StoragePaths__VideoThumbnails: /app/data/video-thumbnails
+      StoragePaths__Logs: /app/data/logs
+      StoragePaths__Backups: /app/data/backups
+      StoragePaths__DataProtection: /app/data/dp-keys
     volumes:
       - /srv/vora/data:/app/data
       - /srv/vora/transcode:/transcode
