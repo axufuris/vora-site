@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import Feature from '../components/Feature.astro';
 import Shot from '../components/Shot.astro';
 import PlatformSwitch from '../components/PlatformSwitch.astro';
+import Platforms from '../components/Platforms.astro';
 
 const repo = 'https://github.com/axufuris/VoraMediaServer';
 const donate = 'https://paypal.me/axufuris';
@@ -10,7 +11,7 @@ const donate = 'https://paypal.me/axufuris';
 
 <Base
   title="Vora — Your movies, shows, music and live TV on every screen"
-  description="Vora is a free media server for your own library, with an open-source server and web app. Movies and shows with cinematic detail pages, music with synced lyrics, podcasts, internet radio, and live TV with a real guide — on the web, your Android phone, your TV, and in the car."
+  description="Vora is a free media server for your own library, with an open-source server and web app. Movies and shows with cinematic detail pages, music with synced lyrics, podcasts, internet radio, and live TV with a real guide — on the web, your Windows or Linux desktop, your Android phone, your TV, and in the car."
 >
   <section class="hero">
     <div class="shell">
@@ -26,7 +27,8 @@ const donate = 'https://paypal.me/axufuris';
       <p class="lede">
         Vora turns your media collection into something that feels like a streaming service — cinematic
         artwork, cast and crew, synced lyrics, a real live-TV guide, and profiles for everyone in the
-        house. It runs on the web, on Android phones, on your television, and on the dash of your car.
+        house. It runs on the web, on Windows and Linux, on Android phones, on your television, and on
+        the dash of your car.
       </p>
 
       <div class="btn-row">
@@ -35,9 +37,11 @@ const donate = 'https://paypal.me/axufuris';
       </div>
 
       <p class="muted" style="margin-top: 1.6rem; max-width: 60ch;">
-        Vora runs every day in real homes and gets regular updates. Keep your backups, and
-        <a href="/features#roadmap">here is what is coming next</a>.
+        Vora runs every day in real homes and gets regular updates. Keep your
+        backups, and <a href="/features#roadmap">here is what is coming next</a>.
       </p>
+
+      <Platforms />
     </div>
   </section>
 
@@ -240,8 +244,9 @@ const donate = 'https://paypal.me/axufuris';
         <h2>The same library, wherever you are</h2>
         <p class="lede">
           One Android app reshapes itself for a phone, a television and a car. Nothing is a stretched
-          tablet layout, and nothing important is missing from the small screen. Android is out first —
-          Roku, Apple TV and Fire TV clients are being built behind it.
+          tablet layout, and nothing important is missing from the small screen. It is out on Fire TV
+          and in beta on Android, the desktop app covers Windows and Linux, and Roku and Apple TV are
+          next.
         </p>
       </div>
 
