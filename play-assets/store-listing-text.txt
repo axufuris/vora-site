@@ -1,0 +1,32 @@
+APP NAME (max 30)
+Vora
+
+SHORT DESCRIPTION (max 80)
+One app for your whole media server: movies, TV, music, live TV & more.
+
+FULL DESCRIPTION (max 4000)
+Vora is the companion app for the self-hosted Vora Media Server. Sign in to your server and enjoy your whole collection — movies, TV shows, music, live TV, podcasts, and internet radio — on your phone, tablet, and Android TV.
+
+Built for every screen, Vora is fast and easy to navigate, whether you're on the couch with a remote or on your phone: full-screen artwork, Continue Watching, collections, and personalized recommendations.
+
+MOVIES & TV
+- Browse your library with rich detail pages, collections, and watchlists
+- Pick up right where you left off with Continue Watching
+- Discover more with recommendations, cast pages, and a release calendar
+
+MUSIC
+- A full music player with synced lyrics
+- Playlists and smart playlists
+- Internet radio and podcasts
+- Android Auto support
+
+LIVE TV
+- Live TV with a full program guide
+- Favorite channels and recordings (IPTV)
+
+FOR THE WHOLE HOUSEHOLD
+- Multiple profiles, each with its own libraries and recommendations
+- PIN-protected profiles, content restrictions, and scheduled access times for kids
+- Multiple color themes to match your style
+
+Vora requires access to a Vora Media Server. Run your own server or connect to one shared with you. Learn more at https://getvora.net.
