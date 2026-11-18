@@ -10,11 +10,9 @@
     "check": "astro check",
     "screenshots": "node tools/build-screenshots.mjs"
   },
-  "dependencies": {
-    "@astrojs/sitemap": "^3.7.4",
-    "astro": "^7.4.12"
-  },
   "devDependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.4.12",
     "sharp": "^0.35.5"
   }
 }
