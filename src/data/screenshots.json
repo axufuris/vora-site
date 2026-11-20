@@ -47,6 +47,38 @@
     "w": 1771,
     "h": 988
   },
+  "appletv/discovery": {
+    "w": 1920,
+    "h": 1080
+  },
+  "appletv/home": {
+    "w": 1920,
+    "h": 1080
+  },
+  "appletv/library": {
+    "w": 1920,
+    "h": 1080
+  },
+  "appletv/live-tv-guide": {
+    "w": 1920,
+    "h": 1080
+  },
+  "appletv/music-player-with-lyrics-and-synth": {
+    "w": 1920,
+    "h": 1080
+  },
+  "appletv/podcasts": {
+    "w": 1920,
+    "h": 1080
+  },
+  "appletv/profile-parental-controls": {
+    "w": 1920,
+    "h": 1080
+  },
+  "appletv/show-season": {
+    "w": 1920,
+    "h": 1080
+  },
   "phone/album": {
     "w": 556,
     "h": 1234
