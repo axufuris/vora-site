@@ -28,3 +28,9 @@ Notes:
 - The 1920x1080 landscape set satisfies Android TV, 7-inch tablet, and
   10-inch tablet requirements, so the same 8 files go in all three slots.
 - Phone set is 9:16 portrait at 1080x1920 (meets the 1080px promo minimum).
+
+APPLE TV (APP STORE) ASSETS  -> apple-tv/   (upload all 8; 1920x1080, no alpha)
+  App Store Connect > the tvOS version > App Previews and Screenshots (Apple TV)
+  apple-tv/01-home.png ... 08-parental-controls.png
+  Same scenes as the Android TV set. Also shown on the site from
+  screenshots-src/Apple TV (public/screenshots/appletv/*.webp).
