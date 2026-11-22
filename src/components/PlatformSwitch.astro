@@ -6,10 +6,13 @@ interface Props {
   web: string;
   phone: string;
   tv: string;
+  iphone: string;
+  ipad: string;
+  appletv: string;
   label: string;
 }
 
-const { name, web, phone, tv, label } = Astro.props;
+const { name, web, phone, tv, iphone, ipad, appletv, label } = Astro.props;
 ---
 
 <div class="switcher">
@@ -17,9 +20,15 @@ const { name, web, phone, tv, label } = Astro.props;
     <input type="radio" name={name} id={`${name}-web`} checked />
     <label for={`${name}-web`}>Web</label>
     <input type="radio" name={name} id={`${name}-phone`} />
-    <label for={`${name}-phone`}>Phone</label>
+    <label for={`${name}-phone`}>Android phone</label>
     <input type="radio" name={name} id={`${name}-tv`} />
-    <label for={`${name}-tv`}>TV</label>
+    <label for={`${name}-tv`}>Android TV</label>
+    <input type="radio" name={name} id={`${name}-iphone`} />
+    <label for={`${name}-iphone`}>iPhone</label>
+    <input type="radio" name={name} id={`${name}-ipad`} />
+    <label for={`${name}-ipad`}>iPad</label>
+    <input type="radio" name={name} id={`${name}-appletv`} />
+    <label for={`${name}-appletv`}>Apple TV</label>
 
     <div class="switcher__panels">
       <div class="switcher__panel switcher__panel--web">
@@ -30,6 +39,15 @@ const { name, web, phone, tv, label } = Astro.props;
       </div>
       <div class="switcher__panel switcher__panel--tv">
         <Shot src={tv} frame="tv" alt={`${label} on Android TV`} />
+      </div>
+      <div class="switcher__panel switcher__panel--iphone">
+        <Shot src={iphone} frame="phone" alt={`${label} on an iPhone`} />
+      </div>
+      <div class="switcher__panel switcher__panel--ipad">
+        <Shot src={ipad} frame="tablet" alt={`${label} on an iPad`} />
+      </div>
+      <div class="switcher__panel switcher__panel--appletv">
+        <Shot src={appletv} frame="tv" alt={`${label} on Apple TV`} />
       </div>
     </div>
   </div>

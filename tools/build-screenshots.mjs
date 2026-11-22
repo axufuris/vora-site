@@ -11,6 +11,8 @@ const folders = {
   Web: 'web',
   'Android Phone': 'phone',
   'Android TV': 'tv',
+  iPhone: 'iphone',
+  iPad: 'ipad',
   'Apple TV': 'appletv',
   'Server Admin': 'admin',
 };

@@ -4,23 +4,28 @@ import Shot from '../components/Shot.astro';
 ---
 
 <Base
-  title="Every screen — Vora on web, Android, TV and in the car"
-  description="Vora on the web, on an Android phone, on Android TV and through Android Auto. One library and one account, with an interface shaped for each screen."
+  title="Every screen — Vora on web, iPhone, iPad, Apple TV, Android and in the car"
+  description="Vora on the web, on iPhone and iPad, on Apple TV, on an Android phone, on Android TV and through Android Auto. One library and one account, with an interface shaped for each screen."
 >
   <section class="section section--tight">
     <div class="shell">
       <span class="eyebrow">Every screen</span>
-      <h1 style="font-size: clamp(2rem, 5vw, 3.2rem);">One library, four ways in</h1>
+      <h1 style="font-size: clamp(2rem, 5vw, 3.2rem);">One library, every way in</h1>
       <p class="lede">
-        The Android client is a single app that reshapes itself for the device it launches on — touch on
-        a phone, a D-pad on the television, and a browsable audio tree in the car. Your watch state,
-        watchlist and settings follow you between all of them. Android ships first, Roku is
+        Every client is native to its platform and reshapes itself for the device it launches on — touch
+        on a phone, a sidebar on an iPad, the focus engine or a D-pad on the television, and a
+        browsable audio tree in the car. Your watch state, watchlist and settings follow you between
+        all of them. Android is in beta, the iPhone and iPad app is in App Store review and about to
+        release, Roku is
         <a href="https://channelstore.roku.com/details/243de173df931cd17978bf333f6bfacf:448780000c7862706faff8975d8f24db/vora" rel="noopener">on the Roku Streaming Store</a>,
-        and <a href="#next">Apple TV and Fire TV are in the works</a>.
+        and <a href="#next">Fire TV is in the works</a>.
       </p>
 
       <nav class="surface-nav" style="margin-top: 2.5rem;" aria-label="Platforms">
         <a href="#web">Web</a>
+        <a href="#iphone">iPhone</a>
+        <a href="#ipad">iPad</a>
+        <a href="#appletv">Apple TV</a>
         <a href="#phone">Android phone</a>
         <a href="#tv">Android TV</a>
         <a href="#auto">Android Auto</a>
@@ -128,6 +133,101 @@ import Shot from '../components/Shot.astro';
     </div>
   </section>
 
+  <section class="surface" id="iphone">
+    <div class="shell">
+      <div class="spotlight">
+        <div class="spotlight__body">
+          <span class="pill">iPhone</span>
+          <h3 style="margin-top: 1rem;">Swift and SwiftUI, all the way down</h3>
+          <p>
+            A native iPhone app, not a web page in a wrapper. Video plays through AVKit with
+            picture-in-picture and AirPlay; music, podcasts and radio share one player that keeps going
+            in the background with lock-screen controls, a sleep timer and the Synth visualizer. Sign in
+            once per server — several servers are fine — and the profile picker remembers who you were.
+          </p>
+          <p class="note">
+            The iPhone and iPad app is in <strong>App Store review</strong> and about to release.
+          </p>
+        </div>
+        <Shot src="iphone/home" frame="phone" alt="Vora home screen on an iPhone" />
+      </div>
+
+      <div class="gallery gallery--phones" style="margin-top: 3.5rem;">
+        <Shot src="iphone/library" frame="phone" alt="Library on an iPhone" caption="Library" />
+        <Shot src="iphone/show-season" frame="phone" alt="A season page on an iPhone" caption="Season" />
+        <Shot src="iphone/music-player-with-lyrics" frame="phone" alt="Music player with lyrics on an iPhone" caption="Lyrics" />
+        <Shot src="iphone/podcasts" frame="phone" alt="Podcasts on an iPhone" caption="Podcasts" />
+        <Shot src="iphone/discovery" frame="phone" alt="Discover on an iPhone" caption="Discover" />
+        <Shot src="iphone/music-home" frame="phone" alt="Music on an iPhone" caption="Music" />
+        <Shot src="iphone/internet-radio-player" frame="phone" alt="Internet radio on an iPhone" caption="Radio" />
+        <Shot src="iphone/release-calendar" frame="phone" alt="Release calendar on an iPhone" caption="Calendar" />
+        <Shot src="iphone/client-templates" frame="phone" alt="Theme picker on an iPhone" caption="Themes" />
+      </div>
+    </div>
+  </section>
+
+  <section class="surface" id="ipad">
+    <div class="shell">
+      <div class="spotlight spotlight--wide">
+        <div class="spotlight__body" style="max-width: 70ch;">
+          <span class="pill">iPad</span>
+          <h3 style="margin-top: 1rem;">Made for the bigger canvas</h3>
+          <p>
+            The iPhone app grows into a sidebar layout on the iPad, in every orientation and at every
+            window width. The hero, the guide grid and the player take advantage of the room instead
+            of stretching a phone layout across it.
+          </p>
+        </div>
+      </div>
+
+      <Shot src="ipad/home" frame="tablet" alt="Vora home screen on an iPad with the sidebar open" />
+
+      <div class="gallery gallery--two" style="margin-top: 2.5rem;">
+        <Shot src="ipad/library" frame="tablet" alt="Library on an iPad" caption="Library" />
+        <Shot src="ipad/live-tv-guide" frame="tablet" alt="Live guide on an iPad" caption="Live guide" />
+        <Shot src="ipad/show-season" frame="tablet" alt="A season page on an iPad" caption="Season" />
+        <Shot src="ipad/music-player-with-lyrics" frame="tablet" alt="Music with lyrics on an iPad" caption="Lyrics" />
+        <Shot src="ipad/discovery" frame="tablet" alt="Discover on an iPad" caption="Discover" />
+        <Shot src="ipad/music-home" frame="tablet" alt="Music on an iPad" caption="Music" />
+        <Shot src="ipad/music-player-with-synth" frame="tablet" alt="The Synth visualizer on an iPad" caption="Synth" />
+        <Shot src="ipad/music-player-with-lyrics-and-synth" frame="tablet" alt="The Synth visualizer above synced lyrics on an iPad" caption="Synth with lyrics" />
+        <Shot src="ipad/podcasts" frame="tablet" alt="Podcasts on an iPad" caption="Podcasts" />
+        <Shot src="ipad/release-calendar" frame="tablet" alt="Release calendar on an iPad" caption="Calendar" />
+      </div>
+    </div>
+  </section>
+
+  <section class="surface" id="appletv">
+    <div class="shell">
+      <div class="spotlight spotlight--wide">
+        <div class="spotlight__body" style="max-width: 70ch;">
+          <span class="pill">Apple TV</span>
+          <h3 style="margin-top: 1rem;">Built for the Siri Remote</h3>
+          <p>
+            Written in Swift and SwiftUI so it behaves like a tvOS app: the focus engine lifts whatever
+            you are on, and the live guide is a grid built for the remote. Music has the same Synth
+            visualizer and synced lyrics as the other living room clients.
+          </p>
+        </div>
+      </div>
+
+      <Shot src="appletv/home" frame="tv" alt="Vora on Apple TV with focus on a poster" />
+
+      <div class="gallery gallery--two" style="margin-top: 2.5rem;">
+        <Shot src="appletv/library" frame="tv" alt="Library on Apple TV" caption="Library" />
+        <Shot src="appletv/live-tv-guide" frame="tv" alt="Live guide on Apple TV" caption="Live guide" />
+        <Shot src="appletv/show-season" frame="tv" alt="A season page on Apple TV" caption="Season" />
+        <Shot src="appletv/music-player-with-lyrics" frame="tv" alt="Music with lyrics on Apple TV" caption="Lyrics on the big screen" />
+        <Shot src="appletv/discovery" frame="tv" alt="Discover on Apple TV" caption="Discover" />
+        <Shot src="appletv/music-home" frame="tv" alt="Music on Apple TV" caption="Music" />
+        <Shot src="appletv/music-player-with-synth" frame="tv" alt="The Synth visualizer and its style menu on Apple TV" caption="Synth" />
+        <Shot src="appletv/music-player-with-lyrics-and-synth" frame="tv" alt="The Synth visualizer above synced lyrics on Apple TV" caption="Synth with lyrics" />
+        <Shot src="appletv/podcasts" frame="tv" alt="Podcasts on Apple TV" caption="Podcasts" />
+        <Shot src="appletv/release-calendar" frame="tv" alt="Release calendar on Apple TV" caption="Calendar" />
+      </div>
+    </div>
+  </section>
+
   <section class="surface" id="auto">
     <div class="shell">
       <div class="spotlight spotlight--wide">
@@ -164,20 +264,13 @@ import Shot from '../components/Shot.astro';
         <h2>More living rooms</h2>
         <p class="lede">
           Android is the first client out of the door, and it is the one getting a Play Store release.
-          Two more are being built behind it, each native to its platform rather than one codebase
-          stretched across all of them — that is the only way a remote feels right on a Fire TV and a
-          Siri Remote feels right on an Apple TV.
+          The Apple clients above are next in line, and Fire TV is being built behind them — each
+          native to its platform rather than one codebase stretched across all of them, which is the
+          only way a remote feels right on a Fire TV.
         </p>
       </div>
 
       <div class="roadmap">
-        <article>
-          <h3>Apple TV</h3>
-          <p>
-            Built in Swift and SwiftUI so it behaves like a tvOS app — the focus engine, the gestures and
-            the Siri Remote all doing what people already expect.
-          </p>
-        </article>
         <article>
           <h3>Fire TV</h3>
           <p>
@@ -187,7 +280,7 @@ import Shot from '../components/Shot.astro';
       </div>
 
       <p class="note" style="margin-top: 2.5rem; max-width: 74ch;">
-        Both will arrive as betas first. The server side already speaks to them — clients talk to
+        Fire TV will arrive as a beta first. The server side already speaks to it — clients talk to
         one shared API and pull their look from the same design tokens the web and Android clients use —
         so a new platform is a new front end, not a second Vora.
       </p>
