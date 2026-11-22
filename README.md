@@ -37,7 +37,7 @@ src/
     404.astro
   styles/global.css           all tokens and component styles
 screenshots-src/              source PNGs, by platform folder (tracked)
-public/screenshots/           generated WebP, by platform (web/phone/tv/appletv/admin)
+public/screenshots/           generated WebP, by platform (web/phone/tv/iphone/ipad/appletv/admin)
 tools/build-screenshots.mjs   PNG -> WebP + dimensions manifest
 ```
 
@@ -48,16 +48,17 @@ visitor sees what Vora looks like before they see what it takes to run.
 ## Screenshots
 
 Drop new captures into `screenshots-src/<Platform>/<Some Name>.png` — the folder
-names are `Web`, `Android Phone`, `Android TV`, `Apple TV` and `Server Admin` — then:
+names are `Web`, `Android Phone`, `Android TV`, `iPhone`, `iPad`, `Apple TV` and
+`Server Admin` — then:
 
 ```bash
 npm run screenshots
 ```
 
-That writes `public/screenshots/<web|phone|tv|appletv|admin>/<kebab-name>.webp` at
+That writes `public/screenshots/<web|phone|tv|iphone|ipad|appletv|admin>/<kebab-name>.webp` at
 quality 82 and regenerates `src/data/screenshots.json` with each image's real
 pixel dimensions, which `Shot.astro` uses for width/height so nothing shifts as
-the page loads. The last run took 90 captures from 38.9 MB of PNG down to 5.2 MB of WebP.
+the page loads. The last run took 163 captures from 154.5 MB of PNG down to 15.2 MB of WebP.
 
 Reference a shot by its key, without extension:
 
@@ -65,6 +66,8 @@ Reference a shot by its key, without extension:
 <Shot src="web/live-tv-guide" url="vora.local/live" alt="..." caption="..." />
 <Shot src="phone/home" frame="phone" alt="..." />
 <Shot src="tv/home" frame="tv" alt="..." />
+<Shot src="iphone/home" frame="phone" alt="..." />
+<Shot src="ipad/home" frame="tablet" alt="..." />
 <Shot src="appletv/home" frame="tv" alt="..." />
 ```
 

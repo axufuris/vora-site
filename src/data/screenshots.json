@@ -47,7 +47,23 @@
     "w": 1771,
     "h": 988
   },
+  "appletv/album": {
+    "w": 1920,
+    "h": 1080
+  },
+  "appletv/client-templates": {
+    "w": 1920,
+    "h": 1080
+  },
+  "appletv/customize-home-screen": {
+    "w": 1920,
+    "h": 1080
+  },
   "appletv/discovery": {
+    "w": 1920,
+    "h": 1080
+  },
+  "appletv/global-collections": {
     "w": 1920,
     "h": 1080
   },
@@ -55,7 +71,31 @@
     "w": 1920,
     "h": 1080
   },
+  "appletv/internet-radio": {
+    "w": 1920,
+    "h": 1080
+  },
+  "appletv/internet-radio-player": {
+    "w": 1920,
+    "h": 1080
+  },
   "appletv/library": {
+    "w": 1920,
+    "h": 1080
+  },
+  "appletv/library-collections": {
+    "w": 1920,
+    "h": 1080
+  },
+  "appletv/library-for-you": {
+    "w": 1920,
+    "h": 1080
+  },
+  "appletv/live-radio-and-tv-provider-access": {
+    "w": 1920,
+    "h": 1080
+  },
+  "appletv/live-tv": {
     "w": 1920,
     "h": 1080
   },
@@ -63,7 +103,27 @@
     "w": 1920,
     "h": 1080
   },
+  "appletv/music-home": {
+    "w": 1920,
+    "h": 1080
+  },
+  "appletv/music-player-plain": {
+    "w": 1920,
+    "h": 1080
+  },
+  "appletv/music-player-with-lyrics": {
+    "w": 1920,
+    "h": 1080
+  },
   "appletv/music-player-with-lyrics-and-synth": {
+    "w": 1920,
+    "h": 1080
+  },
+  "appletv/music-player-with-synth": {
+    "w": 1920,
+    "h": 1080
+  },
+  "appletv/podcast-player": {
     "w": 1920,
     "h": 1080
   },
@@ -75,9 +135,209 @@
     "w": 1920,
     "h": 1080
   },
+  "appletv/profile-scheduled-access-times": {
+    "w": 1920,
+    "h": 1080
+  },
+  "appletv/release-calendar": {
+    "w": 1920,
+    "h": 1080
+  },
   "appletv/show-season": {
     "w": 1920,
     "h": 1080
+  },
+  "appletv/watchlist": {
+    "w": 1920,
+    "h": 1080
+  },
+  "ipad/album": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/client-templates": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/customize-home-screen": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/discovery": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/global-collections": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/home": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/internet-radio": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/internet-radio-player": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/library": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/library-collections": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/library-for-you": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/live-radio-and-tv-provider-access": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/live-tv": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/live-tv-guide": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/music-home": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/music-player-plain": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/music-player-with-lyrics": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/music-player-with-lyrics-and-synth": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/music-player-with-synth": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/podcasts": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/release-calendar": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/show-season": {
+    "w": 2752,
+    "h": 2064
+  },
+  "ipad/watchlist": {
+    "w": 2752,
+    "h": 2064
+  },
+  "iphone/album": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/client-templates": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/customize-home-screen": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/discovery": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/global-collections": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/home": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/internet-radio": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/internet-radio-player": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/library": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/library-collections": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/library-for-you": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/live-radio-and-tv-provider-access": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/live-tv": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/live-tv-guide": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/music-home": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/music-player-plain": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/music-player-with-lyrics": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/podcast-player": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/podcasts": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/profile-parental-controls": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/profile-scheduled-access-times": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/release-calendar": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/show-season": {
+    "w": 1206,
+    "h": 2622
+  },
+  "iphone/watchlist": {
+    "w": 1206,
+    "h": 2622
   },
   "phone/album": {
     "w": 556,
