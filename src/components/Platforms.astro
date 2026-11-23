@@ -5,6 +5,8 @@
  */
 const desktop = 'https://github.com/axufuris/Vora.Desktop/releases/latest';
 const roku = 'https://channelstore.roku.com/details/243de173df931cd17978bf333f6bfacf:448780000c7862706faff8975d8f24db/vora';
+// One App Store listing covers iPhone and iPad; the id-only URL opens the visitor's own storefront.
+const appStore = 'https://apps.apple.com/app/id6836645744';
 // TODO: the Amazon Appstore listing for the Fire TV app.
 const amazon = 'https://www.amazon.com/s?k=Vora&i=mobile-apps';
 
@@ -36,8 +38,8 @@ const platforms = [
   { name: 'Fire TV', kicker: 'Get it on', icon: 'amazon', href: amazon },
   { name: 'Android', kicker: 'In beta', icon: 'android' },
   { name: 'Roku', kicker: 'Get it on', icon: 'tv', href: roku },
-  { name: 'iPhone', kicker: 'Coming soon', icon: 'apple' },
-  { name: 'iPad', kicker: 'Coming soon', icon: 'apple' },
+  { name: 'iPhone', kicker: 'Get it on', icon: 'apple', href: appStore },
+  { name: 'iPad', kicker: 'Get it on', icon: 'apple', href: appStore },
   { name: 'Apple TV', kicker: 'Coming soon', icon: 'apple' },
 ];
 ---
